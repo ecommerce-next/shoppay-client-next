@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './style.module.scss';
 import {MdSecurity} from "react-icons/md";
 import {BsSuitHeart} from "react-icons/bs";
 import {RiAccountPinCircleLine, RiArrowDropDownFill} from "react-icons/ri";
 import Link from "next/link";
+import UserMenu from "./UserMenu";
 
 const Top = () => {
+    const [loggedIn, setLoggedIn] = useState(true);
+
+
     return (
         <div className={styles.top}>
             <div className={styles.top__container}>
@@ -34,14 +38,30 @@ const Top = () => {
                             <span>Whishlist</span>
                         </Link>
                     </li>
-                    <li>
-                        <div className={styles.flex}>
-                            <RiAccountPinCircleLine/>
-                            <span>Account</span>
-                            <RiArrowDropDownFill/>
-                        </div>
-                    </li>
 
+                    <li>
+                        {loggedIn ? (
+                            <li>
+                                <div className={styles.flex}>
+                                    <img
+                                        src="https://th.bing.com/th/id/OIP.H1w2cshS4jS9WqGDI-t3oQHaHa?pid=ImgDet&w=950&h=950&rs=1"
+                                        alt=""
+                                    />
+                                    <span>IRINA</span>
+                                    <RiArrowDropDownFill/>
+                                </div>
+                            </li>
+                        ) : (
+                            <li>
+                                <div className={styles.flex}>
+                                    <RiAccountPinCircleLine/>
+                                    <span>Account</span>
+                                    <RiArrowDropDownFill/>
+                                </div>
+                            </li>
+                        )}
+                        <UserMenu loggedIn={loggedIn}/>
+                    </li>
                 </ul>
             </div>
         </div>
