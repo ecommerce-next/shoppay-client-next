@@ -2,27 +2,42 @@
   margin: 0;
   box-sizing: border-box;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     box-sizing: border-box;
   }
 }
 
 body {
+  margin: 0;
   font-family: sans-serif;
-  color: #070720;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background: #6cc070;
+  color: #5a31f4;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
-img, video, canvas, svg {
+img,
+video,
+canvas,
+svg {
   max-width: 100%;
 }
 
