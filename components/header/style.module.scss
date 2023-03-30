@@ -32,7 +32,7 @@
     display: flex;
     gap: 15px;
 
-    .li {
+    li {
       position: relative;
       display: flex;
       align-items: center;
@@ -236,7 +236,7 @@
     cursor: pointer;
 
     &:hover {
-      //fill: $blue-color;
+      fill: $blue-color;
     }
   }
 
