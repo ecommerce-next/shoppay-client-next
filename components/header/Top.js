@@ -8,6 +8,7 @@ import UserMenu from "./UserMenu";
 
 const Top = () => {
     const [loggedIn, setLoggedIn] = useState(true);
+    const [visible, setVisible] = useState(false);
 
 
     return (
@@ -22,16 +23,20 @@ const Top = () => {
                         />
                         <span>Morroco / usd</span>
                     </li>
+
                     <li>
                         <MdSecurity/>
                         <span>Buyer Protection</span>
                     </li>
+
                     <li className={styles.li}>
                         <span>Customer Service</span>
                     </li>
+
                     <li className={styles.li}>
                         <span>Help</span>
                     </li>
+
                     <li>
                         <BsSuitHeart/>
                         <Link href="/profile/whishlist">
@@ -39,9 +44,11 @@ const Top = () => {
                         </Link>
                     </li>
 
-                    <li>
+                    <li
+                        onMouseOver={() => setVisible(true)}
+                        onMouseLeave={() => setVisible(false)}
+                    >
                         {loggedIn ? (
-                            <li>
                                 <div className={styles.flex}>
                                     <img
                                         src="https://th.bing.com/th/id/OIP.H1w2cshS4jS9WqGDI-t3oQHaHa?pid=ImgDet&w=950&h=950&rs=1"
@@ -49,18 +56,16 @@ const Top = () => {
                                     />
                                     <span>IRINA</span>
                                     <RiArrowDropDownFill/>
-                                </div>
-                            </li>
+                            </div>
                         ) : (
-                            <li>
                                 <div className={styles.flex}>
                                     <RiAccountPinCircleLine/>
                                     <span>Account</span>
                                     <RiArrowDropDownFill/>
                                 </div>
-                            </li>
                         )}
-                        <UserMenu loggedIn={loggedIn}/>
+
+                        {visible && <UserMenu loggedIn={loggedIn}/>}
                     </li>
                 </ul>
             </div>
