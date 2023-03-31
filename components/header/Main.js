@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 
 const Main = () => {
     const {cart} =useSelector((state) => ({...state}));
-    console.log(cart.length, 'cart.length')
 
     return (
         <div className={styles.main}>
