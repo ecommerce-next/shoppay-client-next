@@ -5,8 +5,9 @@ import {BsSuitHeart} from "react-icons/bs";
 import {RiAccountPinCircleLine, RiArrowDropDownFill} from "react-icons/ri";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
+import {v4 as uuidv4} from "uuid";
 
-const Top = () => {
+const Top = ({country}) => {
     const [loggedIn, setLoggedIn] = useState(true);
     const [visible, setVisible] = useState(false);
 
@@ -15,13 +16,11 @@ const Top = () => {
         <div className={styles.top}>
             <div className={styles.top__container}>
                 <div></div>
+
                 <ul className={styles.top__list}>
                     <li>
-                        <img
-                            src="https://www.seekpng.com/png/detail/185-1856467_clipart-library-library-hula-girl-clipart-hula-girl.png"
-                            alt="Clipart Library Library Hula Girl Clipart - Hula Girl Clipart@seekpng.com"
-                        />
-                        <span>Morroco / usd</span>
+                        <img src={country.flag} alt=""/>
+                        <span> {country.name}/ usd</span>
                     </li>
 
                     <li>
