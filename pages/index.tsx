@@ -6,7 +6,6 @@ import axios from "axios";
 
 
 export default function Home({country}) {
-    console.log(country, 'country')
     return (
         <div>
             <Header country={country}/>
@@ -17,7 +16,7 @@ export default function Home({country}) {
 
 export async function getServerSideProps() {
     let data = await axios
-        .get("https://api.ipregistry.co/?key=8jt8fpwida8u907n")
+        .get(`https://api.ipregistry.co/?key=${process.env.GEOLOCATION_KEY}`)
         .then((res) => {
             return res.data.location.country;
         })
@@ -27,9 +26,14 @@ export async function getServerSideProps() {
 
     return {
         props: {
+            //TODO dont use it in dev mode, will change for prod
+            // country: {
+            //     name: data.name,
+            //     flag: data.flag.emojitwo
+            // },
             country: {
-                name: data.name,
-                flag: data.flag.emojitwo
+                name: "United State",
+                flag: "https://www.seekpng.com/png/full/3-34817_picture-download-american-flag-clipart-no-background-transparent.png",
             },
         }
     }

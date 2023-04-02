@@ -31,7 +31,7 @@ const data = [
     },
 ];
 
-export default function Copyright() {
+export default function Copyright({country}) {
     return (
         <div className={styles.footer__copyright}>
             <section>©2022 SHOPPAY All Rights Reserved.</section>
@@ -44,8 +44,9 @@ export default function Copyright() {
                         </li>
                     ))}
                     <li>
-                        <a>
+                        <a href=''>
                             <IoLocationSharp/>
+                            {country.name}
                         </a>
                     </li>
                 </ul>
