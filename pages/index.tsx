@@ -1,14 +1,22 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import axios from "axios";
-// import Image from "next/image";
-// import styles from '@/styles/Home.module.scss'
+import Image from "next/image";
+import styles from '@/styles/Home.module.scss'
+import { useSession, signIn, signOut } from "next-auth/client"
+import {any} from "prop-types";
 
 
-export default function Home({country}) {
+export default function Home({country= any}) {
+    const [session, loading] = useSession();
+    console.log(session)
+
     return (
         <div>
             <Header country={country}/>
+            {
+                session ? 'you are logged in' : 'you are not logged in'
+            }
             <Footer country={country}/>
         </div>
     )
