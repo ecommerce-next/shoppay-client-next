@@ -1,14 +1,13 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import axios from "axios";
-import Image from "next/image";
-import styles from '@/styles/Home.module.scss'
-import { useSession, signIn, signOut } from "next-auth/client"
-import {any} from "prop-types";
+// import Image from "next/image";
+// import styles from '@/styles/Home.module.scss'
+import { useSession, signIn, signOut } from "next-auth/react";
 
 
-export default function Home({country= any}) {
-    const [session, loading] = useSession();
+export default function Home({country}) {
+    const { data: session } = useSession()
     console.log(session)
 
     return (
