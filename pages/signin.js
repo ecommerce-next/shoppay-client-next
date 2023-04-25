@@ -2,12 +2,19 @@ import {useState} from "react";
 import {Formik, Form} from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import {
+    getCsrfToken,
+    getProviders,
+    getSession,
+    signIn,
+    // country,
+} from "next-auth/react";
 import styles from "../styles/signin.module.scss";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import LoginInput from "../components/inputs/loginInput";
+import CircledIconBtn from "../components/buttons/circledIconBtn";
 import {BiLeftArrowAlt} from "react-icons/bi";
-// import CircledIconBtn from "../components/buttons/circledIconBtn";
 
 const country = {
     name: "United State",
@@ -26,7 +33,8 @@ const initialvalues = {
     login_error: "",
 };
 
-const signin = () => {
+export default function signin({providers, callbackUrl, csrfToken}) {
+    console.log(providers)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
     const {
@@ -51,7 +59,6 @@ const signin = () => {
             .email("Please enter a valid email address."),
         login_password: Yup.string().required("Please enter a password"),
     });
-    console.log(loginValidation, '=========loginValidation');
 
     return (
         <>
@@ -92,14 +99,14 @@ const signin = () => {
                                     />
                                     <LoginInput
                                         type="text"
-                                        name="email"
+                                        name="login_email"
                                         icon="email"
                                         placeholder="Email Address"
                                         onChange={handleChange}
                                     />
                                     <LoginInput
                                         type="password"
-                                        name="password"
+                                        name="login_password"
                                         icon="password"
                                         placeholder="Password"
                                         onChange={handleChange}
@@ -111,10 +118,38 @@ const signin = () => {
                                         placeholder="Re-Type Password"
                                         onChange={handleChange}
                                     />
-                                    {/*<CircledIconBtn type="submit" text="Sign up" />*/}
+
+                                    <CircledIconBtn type="submit" text="Sign up"/>
+
+                                    <div className={styles.forgot}>
+                                        <Link href="/auth/forgot">Forgot password ?</Link>
+                                    </div>
                                 </Form>
                             )}
                         </Formik>
+                        <div className={styles.login__socials}>
+                            <span className={styles.or}>Or continue with</span>
+                            <div className={styles.login__socials_wrap}>
+                                {providers.map((provider) => {
+                                    if (provider.name == "Credentials") {
+                                        return;
+                                    }
+                                    return (
+                                        <div key={provider.name}>
+                                            <button
+                                                className={styles.social__btn}
+                                                onClick={() => signIn(provider.id)}
+                                            >
+                                                <img src={`../../icons/${provider.name}.png`} alt="" />
+                                                Sign in with {provider.name}
+                                            </button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+
 
                     </div>
                 </div>
@@ -124,4 +159,33 @@ const signin = () => {
     );
 };
 
-export default signin;
+
+export async function getServerSideProps(context) {
+    const providers =  Object.values(await getProviders());
+    return {
+        props: {providers},
+    }
+
+
+    // const {req, query} = context;
+    //
+    // const session = await getSession({req});
+    // const {callbackUrl} = query;
+    //
+    // if (session) {
+    //     return {
+    //         redirect: {
+    //             destination: callbackUrl,
+    //         },
+    //     };
+    // }
+    // const csrfToken = await getCsrfToken(context);
+    // const providers = Object.values(await getProviders());
+    // return {
+    //     props: {
+    //         providers,
+    //         csrfToken,
+    //         callbackUrl,
+    //     },
+    // };
+}
