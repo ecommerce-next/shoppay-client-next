@@ -1,7 +1,5 @@
 import {useState} from "react";
-import {Formik, Form} from "formik";
 import * as Yup from "yup";
-import Link from "next/link";
 import {
     getCsrfToken,
     getProviders,
@@ -12,9 +10,8 @@ import {
 import styles from "../styles/signin.module.scss";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import LoginInput from "../components/inputs/loginInput";
-import CircledIconBtn from "../components/buttons/circledIconBtn";
-import {BiLeftArrowAlt} from "react-icons/bi";
+import EmailSignIn from "../components/signin/EmailSignIn";
+import EmailSignUp from "../components/signin/EmailSignUp";
 
 const country = {
     name: "United State",
@@ -33,7 +30,7 @@ const initialvalues = {
     login_error: "",
 };
 
-export default function signin({providers, callbackUrl, csrfToken}) {
+export default function signin({providers}) {
     console.log(providers)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
@@ -60,99 +57,33 @@ export default function signin({providers, callbackUrl, csrfToken}) {
         login_password: Yup.string().required("Please enter a password"),
     });
 
+    const registerValidation = Yup.object({});
+
+    const signInHandler = async (e) => {
+
+    };
+
+    const signUpHandler = async (e) => {
+
+    };
+
     return (
         <>
             <Header country={country}/>
             <div className={styles.login}>
-                <div className={styles.login__container}>
-                    <div className={styles.login__header}>
-                        <div className={styles.back__svg}>
-                            <BiLeftArrowAlt/>
-                        </div>
-                        <span>
-                            We&apos;d be happy to join us! <Link href="/">Go Store</Link>
-                        </span>
-                    </div>
-
-                    <div className={styles.login__form}>
-                        <h1>Sign in</h1>
-                        <p>
-                            Get access to one of the best Eshopping services in the world.
-                        </p>
-
-                        <Formik
-                            enableReinitialize
-                            initialValues={{
-                                login_email,
-                                login_password,
-                            }}
-                            validationSchema={loginValidation}
-                        >
-                            {(form) => (
-                                <Form>
-                                    <LoginInput
-                                        type="text"
-                                        name="name"
-                                        icon="user"
-                                        placeholder="Full Name"
-                                        onChange={handleChange}
-                                    />
-                                    <LoginInput
-                                        type="text"
-                                        name="login_email"
-                                        icon="email"
-                                        placeholder="Email Address"
-                                        onChange={handleChange}
-                                    />
-                                    <LoginInput
-                                        type="password"
-                                        name="login_password"
-                                        icon="password"
-                                        placeholder="Password"
-                                        onChange={handleChange}
-                                    />
-                                    <LoginInput
-                                        type="password"
-                                        name="conf_password"
-                                        icon="password"
-                                        placeholder="Re-Type Password"
-                                        onChange={handleChange}
-                                    />
-
-                                    <CircledIconBtn type="submit" text="Sign up"/>
-
-                                    <div className={styles.forgot}>
-                                        <Link href="/auth/forgot">Forgot password ?</Link>
-                                    </div>
-                                </Form>
-                            )}
-                        </Formik>
-                        <div className={styles.login__socials}>
-                            <span className={styles.or}>Or continue with</span>
-                            <div className={styles.login__socials_wrap}>
-                                {providers.map((provider) => {
-                                    if (provider.name == "Credentials") {
-                                        return;
-                                    }
-                                    return (
-                                        <div key={provider.name}>
-                                            <button
-                                                className={styles.social__btn}
-                                                onClick={() => signIn(provider.id)}
-                                            >
-                                                <img src={`../../icons/${provider.name}.png`} alt="" />
-                                                Sign in with {provider.name}
-                                            </button>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
+                <EmailSignIn
+                    loginValidation={loginValidation}
+                    login_email={login_email}
+                    login_password={login_password}
+                    handleChange={handleChange}
+                    signInHandler={signInHandler}
+                    providers={providers}
+                />
+                <EmailSignUp
+                    registerValidation={registerValidation}
+                    user={user}
+                    signUpHandler={signUpHandler}
+                />
             </div>
             <Footer country={country}/>
         </>
@@ -161,7 +92,7 @@ export default function signin({providers, callbackUrl, csrfToken}) {
 
 
 export async function getServerSideProps(context) {
-    const providers =  Object.values(await getProviders());
+    const providers = Object.values(await getProviders());
     return {
         props: {providers},
     }
