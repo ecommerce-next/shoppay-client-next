@@ -3,17 +3,15 @@ import bcrypt from "bcrypt";
 import {validateEmail} from "../../../utils/validation";
 import db from "../../../utils/db";
 import User from "../../../models/User";
-import { createActivationToken } from "../../../utils/tokens";
-import { sendEmail } from "../../../utils/sendEmails";
-import { activateEmailTemplate } from "../../../emails/activateEmailTemplate";
+import {createActivationToken} from "../../../utils/tokens";
+import {sendEmail} from "../../../utils/sendEmails";
+import {activateEmailTemplate} from "../../../emails/activateEmailTemplate";
 
 const handler = nc();
 
 handler.post(async (req, res) => {
     try {
         await db.connectDb();
-
-        console.log("req.body", req.body);
         const {name, email, password} = req.body;
 
         if (!name || !email || !password) {
@@ -44,6 +42,7 @@ handler.post(async (req, res) => {
         });
 
         const url = `${process.env.BASE_URL}/activate/${activation_token}`;
+
         sendEmail(email, url, "", "Activate your account.", activateEmailTemplate);
         await db.disconnectDb();
         res.json({
