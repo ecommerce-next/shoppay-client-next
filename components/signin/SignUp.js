@@ -4,7 +4,7 @@ import LoginInput from "../inputs/loginInput";
 import CircledIconBtn from "../buttons/circledIconBtn";
 import styles from "../../styles/signin.module.scss";
 
-const EmailSignUp = (props) => {
+const SignUp = (props) => {
     return (
         <div className={styles.login__container}>
             <div className={styles.login__form}>
@@ -68,4 +68,4 @@ const EmailSignUp = (props) => {
     );
 };
 
-export default EmailSignUp;
+export default SignUp;

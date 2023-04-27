@@ -10,8 +10,8 @@ import {
 import styles from "../styles/signin.module.scss";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import EmailSignIn from "../components/signin/EmailSignIn";
-import EmailSignUp from "../components/signin/EmailSignUp";
+import SignIn from "../components/signin/SignIn";
+import SignUp from "../components/signin/SignUp";
 
 const country = {
     name: "United State",
@@ -71,7 +71,7 @@ export default function signin({providers}) {
         <>
             <Header country={country}/>
             <div className={styles.login}>
-                <EmailSignIn
+                <SignIn
                     loginValidation={loginValidation}
                     login_email={login_email}
                     login_password={login_password}
@@ -79,10 +79,11 @@ export default function signin({providers}) {
                     signInHandler={signInHandler}
                     providers={providers}
                 />
-                <EmailSignUp
+                <SignUp
                     registerValidation={registerValidation}
                     user={user}
                     signUpHandler={signUpHandler}
+                    handleChange={handleChange}
                 />
             </div>
             <Footer country={country}/>

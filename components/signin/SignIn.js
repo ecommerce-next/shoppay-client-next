@@ -7,7 +7,7 @@ import Link from "next/link";
 import SocialSignIn from "./SocialSignIn";
 import {BiLeftArrowAlt} from "react-icons/bi";
 
-const EmailSignIn = (props) => {
+const SignIn = (props) => {
     return (
         <div className={styles.login__container}>
             <div className={styles.login__header}>
@@ -65,4 +65,4 @@ const EmailSignIn = (props) => {
     );
 };
 
-export default EmailSignIn;
+export default SignIn;
