@@ -1,5 +1,4 @@
 import {useState} from "react";
-import * as Yup from "yup";
 import {
     getCsrfToken,
     getProviders,
@@ -31,33 +30,12 @@ const initialvalues = {
 };
 
 export default function signin({providers}) {
-    console.log(providers)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
-    const {
-        login_email,
-        login_password,
-        name,
-        email,
-        password,
-        conf_password,
-        success,
-        error,
-        login_error,
-    } = user;
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setUser({...user, [name]: value});
     };
-
-    const loginValidation = Yup.object({
-        login_email: Yup.string()
-            .required("Email address is required.")
-            .email("Please enter a valid email address."),
-        login_password: Yup.string().required("Please enter a password"),
-    });
-
-    const registerValidation = Yup.object({});
 
     const signInHandler = async (e) => {
 
@@ -72,15 +50,12 @@ export default function signin({providers}) {
             <Header country={country}/>
             <div className={styles.login}>
                 <SignIn
-                    loginValidation={loginValidation}
-                    login_email={login_email}
-                    login_password={login_password}
+                    user={user}
                     handleChange={handleChange}
                     signInHandler={signInHandler}
                     providers={providers}
                 />
                 <SignUp
-                    registerValidation={registerValidation}
                     user={user}
                     signUpHandler={signUpHandler}
                     handleChange={handleChange}

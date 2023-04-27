@@ -6,8 +6,22 @@ import styles from "../../styles/signin.module.scss";
 import Link from "next/link";
 import SocialSignIn from "./SocialSignIn";
 import {BiLeftArrowAlt} from "react-icons/bi";
+import * as Yup from "yup";
 
 const SignIn = (props) => {
+    const {
+        login_email,
+        login_password,
+    } = props.user;
+
+    const loginValidation = Yup.object({
+        login_email: Yup.string()
+            .required("Email address is required.")
+            .email("Please enter a valid email address."),
+        login_password: Yup.string().required("Please enter a password"),
+    });
+
+
     return (
         <div className={styles.login__container}>
             <div className={styles.login__header}>
@@ -27,10 +41,10 @@ const SignIn = (props) => {
                 <Formik
                     enableReinitialize
                     initialValues={{
-                        login_email: props.login_email,
-                        login_password: props.login_password,
+                        login_email,
+                        login_password,
                     }}
-                    validationSchema={props.loginValidation}
+                    validationSchema={loginValidation}
                     onSubmit={() => {
                         props.signInHandler();
                     }}
