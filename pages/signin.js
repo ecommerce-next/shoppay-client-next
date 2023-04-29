@@ -1,4 +1,5 @@
 import {useState} from "react";
+import Router from "next/router";
 import {
     getCsrfToken,
     getProviders,
@@ -30,6 +31,7 @@ const initialvalues = {
 };
 
 export default function signin({providers}) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
 
     const handleChange = (e) => {
@@ -37,13 +39,6 @@ export default function signin({providers}) {
         setUser({...user, [name]: value});
     };
 
-    const signInHandler = async (e) => {
-
-    };
-
-    const signUpHandler = async (e) => {
-
-    };
 
     return (
         <>
@@ -51,13 +46,13 @@ export default function signin({providers}) {
             <div className={styles.login}>
                 <SignIn
                     user={user}
+                    setUser={setUser}
                     handleChange={handleChange}
-                    signInHandler={signInHandler}
                     providers={providers}
                 />
                 <SignUp
                     user={user}
-                    signUpHandler={signUpHandler}
+                    setUser={setUser}
                     handleChange={handleChange}
                 />
             </div>

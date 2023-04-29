@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Form, Formik} from "formik";
 import LoginInput from "../inputs/loginInput";
 import CircledIconBtn from "../buttons/circledIconBtn";
 import styles from "../../styles/signin.module.scss";
 import * as Yup from "yup";
+import {signIn} from "next-auth/react";
+import Router from "next/router";
+import axios from "axios";
+// import {useDispatch, useSelector} from "react-redux";
 
-const SignUp = (props) => {
+const SignUp = ({user, setUser, handleChange}) => {
+    const [loading, setLoading] = useState(false);
+    // const {user} = useSelector((state) => ({...state}));
+    // const dispatch = useDispatch()
+
     const {
         name,
         email,
@@ -13,7 +21,40 @@ const SignUp = (props) => {
         conf_password,
         success,
         error,
-    } = props.user;
+    } = user;
+
+
+    const signUpHandler = async (e) => {
+        try {
+            setLoading(true);
+            const {data} = await axios.post("/api/auth/signup", {
+                name,
+                email,
+                password,
+            });
+
+            // dispatch({...user,  error: "", success: data.message });
+            setUser({...user, error: "", success: data.message});
+            setLoading(false);
+
+            setTimeout(async () => {
+                let options = {
+                    redirect: false,
+                    email: email,
+                    password: password,
+                };
+
+                const res = await signIn("credentials", options);
+                await Router.push("/");
+            }, 2000);
+
+        } catch (error) {
+            setLoading(false);
+            //dispatch({...user,  success: "", error: error.response.data.message });
+            setUser({...user, success: "", error: error.response.data.message});
+        }
+    };
+
 
     const registerValidation = Yup.object({
         name: Yup.string()
@@ -53,8 +94,8 @@ const SignUp = (props) => {
                         conf_password,
                     }}
                     validationSchema={registerValidation}
-                    onSubmit={() => {
-                        props.signUpHandler();
+                    onSubmit={async () => {
+                        await signUpHandler();
                     }}
                 >
                     {(form) => (
@@ -64,28 +105,28 @@ const SignUp = (props) => {
                                 name="name"
                                 icon="user"
                                 placeholder="Full Name"
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                             />
                             <LoginInput
                                 type="text"
                                 name="email"
                                 icon="email"
                                 placeholder="Email Address"
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                             />
                             <LoginInput
                                 type="password"
                                 name="password"
                                 icon="password"
                                 placeholder="Password"
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                             />
                             <LoginInput
                                 type="password"
                                 name="conf_password"
                                 icon="password"
                                 placeholder="Re-Type Password"
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                             />
                             <CircledIconBtn type="submit" text="Sign up"/>
                         </Form>

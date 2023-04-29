@@ -4,7 +4,13 @@ import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import { persistReducer } from "redux-persist";
 import cart from './cartSlice'
-const reducers = combineReducers({cart:cart});
+import user from "./userSlice";
+
+
+const reducers = combineReducers({
+    cart,
+    user,
+});
 
 const config = {
     key: 'root',

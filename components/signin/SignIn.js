@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Form, Formik} from "formik";
 import LoginInput from "../inputs/loginInput";
 import CircledIconBtn from "../buttons/circledIconBtn";
@@ -7,12 +7,42 @@ import Link from "next/link";
 import SocialSignIn from "./SocialSignIn";
 import {BiLeftArrowAlt} from "react-icons/bi";
 import * as Yup from "yup";
+import {signIn} from "next-auth/react";
+import Router from "next/router";
+// import {useDispatch, useSelector} from "react-redux";
 
-const SignIn = (props) => {
+const SignIn = ({user, setUser, handleChange, providers}) => {
+    // const {user} = useSelector((state) => ({...state}));
+    //const dispatch = useDispatch()
+    const [loading, setLoading] = useState(false);
+
     const {
         login_email,
         login_password,
-    } = props.user;
+    } = user;
+
+    const signInHandler = async (e) => {
+        setLoading(true);
+        let options = {
+            redirect: false,
+            email: login_email,
+            password: login_password,
+        };
+
+        const res = await signIn("credentials", options);
+        //dispatch({...user,  success: "", error: ""});
+        setUser({...user, success: "", error: ""});
+        setLoading(false);
+
+        if (res?.error) {
+            setLoading(false);
+            //dispatch({...user,  login_error: res?.error });
+            setUser({...user, login_error: res?.error});
+        } else {
+            return Router.push(callbackUrl || "/");
+        }
+    };
+
 
     const loginValidation = Yup.object({
         login_email: Yup.string()
@@ -45,8 +75,8 @@ const SignIn = (props) => {
                         login_password,
                     }}
                     validationSchema={loginValidation}
-                    onSubmit={() => {
-                        props.signInHandler();
+                    onSubmit={async () => {
+                        await signInHandler();
                     }}
                 >
                     {(form) => (
@@ -56,14 +86,14 @@ const SignIn = (props) => {
                                 name="login_email"
                                 icon="email"
                                 placeholder="Email Address"
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                             />
                             <LoginInput
                                 type="password"
                                 name="login_password"
                                 icon="password"
                                 placeholder="Password"
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                             />
                             <CircledIconBtn type="submit" text="Sign in"/>
 
@@ -73,7 +103,7 @@ const SignIn = (props) => {
                         </Form>
                     )}
                 </Formik>
-                <SocialSignIn providers={props.providers}/>
+                <SocialSignIn providers={providers}/>
             </div>
         </div>
     );
