@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Router from "next/router";
 import {
     getCsrfToken,
@@ -12,6 +12,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import SignIn from "../components/signin/SignIn";
 import SignUp from "../components/signin/SignUp";
+import CircleLoaderSpinner from "../components/loaders/circleLoader ";
 
 const country = {
     name: "United State",
@@ -33,6 +34,9 @@ const initialvalues = {
 export default function signin({providers}) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [loading, setLoading] = useState(false);
+
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -42,6 +46,7 @@ export default function signin({providers}) {
 
     return (
         <>
+            {loading && <CircleLoaderSpinner/>}
             <Header country={country}/>
             <div className={styles.login}>
                 <SignIn
@@ -49,11 +54,13 @@ export default function signin({providers}) {
                     setUser={setUser}
                     handleChange={handleChange}
                     providers={providers}
+                    setLoading={setLoading}
                 />
                 <SignUp
                     user={user}
                     setUser={setUser}
                     handleChange={handleChange}
+                    setLoading={setLoading}
                 />
             </div>
             <Footer country={country}/>

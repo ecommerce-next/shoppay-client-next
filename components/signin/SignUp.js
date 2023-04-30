@@ -7,10 +7,10 @@ import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
 import axios from "axios";
+import DotLoaderSpinner from "../loaders/dotLoader";
 // import {useDispatch, useSelector} from "react-redux";
 
-const SignUp = ({user, setUser, handleChange}) => {
-    const [loading, setLoading] = useState(false);
+const SignUp = ({user, setUser, handleChange, setLoading}) => {
     // const {user} = useSelector((state) => ({...state}));
     // const dispatch = useDispatch()
 
@@ -41,7 +41,7 @@ const SignUp = ({user, setUser, handleChange}) => {
                 let options = {
                     redirect: false,
                     email: email,
-                    password: password,
+
                 };
 
                 const res = await signIn("credentials", options);

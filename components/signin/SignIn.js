@@ -9,16 +9,17 @@ import {BiLeftArrowAlt} from "react-icons/bi";
 import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
+import DotLoaderSpinner from "../loaders/dotLoader";
 // import {useDispatch, useSelector} from "react-redux";
 
-const SignIn = ({user, setUser, handleChange, providers}) => {
+const SignIn = ({user, setUser, handleChange, providers, setLoading}) => {
     // const {user} = useSelector((state) => ({...state}));
     //const dispatch = useDispatch()
-    const [loading, setLoading] = useState(false);
 
     const {
         login_email,
         login_password,
+        login_error
     } = user;
 
     const signInHandler = async (e) => {
@@ -96,6 +97,10 @@ const SignIn = ({user, setUser, handleChange, providers}) => {
                                 onChange={handleChange}
                             />
                             <CircledIconBtn type="submit" text="Sign in"/>
+
+                            {login_error && (
+                                <span className={styles.error}>{login_error}</span>
+                            )}
 
                             <div className={styles.forgot}>
                                 <Link href="/auth/forgot">Forgot password ?</Link>
