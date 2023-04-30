@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import Router from "next/router";
 import {
     getCsrfToken,
     getProviders,
@@ -46,7 +45,7 @@ export default function signin({providers}) {
 
     return (
         <>
-            {loading && <CircleLoaderSpinner/>}
+            {loading && <CircleLoaderSpinner loading={loading}/>}
             <Header country={country}/>
             <div className={styles.login}>
                 <SignIn

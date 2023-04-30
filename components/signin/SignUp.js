@@ -41,7 +41,7 @@ const SignUp = ({user, setUser, handleChange, setLoading}) => {
                 let options = {
                     redirect: false,
                     email: email,
-
+                    password: password,
                 };
 
                 const res = await signIn("credentials", options);
