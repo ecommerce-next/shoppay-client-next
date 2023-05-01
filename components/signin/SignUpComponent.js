@@ -10,7 +10,7 @@ import axios from "axios";
 import DotLoaderSpinner from "../loaders/dotLoader";
 // import {useDispatch, useSelector} from "react-redux";
 
-const SignUp = ({user, setUser, handleChange, setLoading}) => {
+const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
     // const {user} = useSelector((state) => ({...state}));
     // const dispatch = useDispatch()
 
@@ -141,4 +141,4 @@ const SignUp = ({user, setUser, handleChange, setLoading}) => {
     );
 };
 
-export default SignUp;
+export default SignUpComponent;

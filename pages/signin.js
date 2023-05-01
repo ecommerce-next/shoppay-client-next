@@ -8,8 +8,8 @@ import {
 import styles from "../styles/signin.module.scss";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import SignIn from "../components/signin/SignIn";
-import SignUp from "../components/signin/SignUp";
+import SignInComponent from "../components/signin/SignInComponent";
+import SignUpComponent from "../components/signin/SignUpComponent";
 import CircleLoaderSpinner from "../components/loaders/circleLoader ";
 
 const country = {
@@ -29,7 +29,7 @@ const initialvalues = {
     login_error: "",
 };
 
-export default function signin({providers, callbackUrl, csrfToken}) {
+export default function SignIn({providers, callbackUrl, csrfToken}) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -47,7 +47,7 @@ export default function signin({providers, callbackUrl, csrfToken}) {
             {loading && <CircleLoaderSpinner loading={loading}/>}
             <Header country={country}/>
             <div className={styles.login}>
-                <SignIn
+                <SignInComponent
                     user={user}
                     setUser={setUser}
                     handleChange={handleChange}
@@ -56,7 +56,7 @@ export default function signin({providers, callbackUrl, csrfToken}) {
                     callbackUrl={callbackUrl}
                     csrfToken={csrfToken}
                 />
-                <SignUp
+                <SignUpComponent
                     user={user}
                     setUser={setUser}
                     handleChange={handleChange}
