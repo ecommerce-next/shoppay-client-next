@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     getCsrfToken,
     getProviders,
     getSession,
-    signIn,
     // country,
 } from "next-auth/react";
 import styles from "../styles/signin.module.scss";
@@ -30,7 +29,7 @@ const initialvalues = {
     login_error: "",
 };
 
-export default function signin({providers}) {
+export default function signin({providers, callbackUrl, csrfToken}) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [user, setUser] = useState(initialvalues);
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -54,6 +53,8 @@ export default function signin({providers}) {
                     handleChange={handleChange}
                     providers={providers}
                     setLoading={setLoading}
+                    callbackUrl={callbackUrl}
+                    csrfToken={csrfToken}
                 />
                 <SignUp
                     user={user}
@@ -69,31 +70,26 @@ export default function signin({providers}) {
 
 
 export async function getServerSideProps(context) {
+    const {req, query} = context;
+
+    const session = await getSession({req});
+    const {callbackUrl} = query;
+
+    if (session) {
+        return {
+            redirect: {
+                destination: callbackUrl,
+            },
+        };
+    };
+
+    const csrfToken = await getCsrfToken(context);
     const providers = Object.values(await getProviders());
     return {
-        props: {providers},
-    }
-
-
-    // const {req, query} = context;
-    //
-    // const session = await getSession({req});
-    // const {callbackUrl} = query;
-    //
-    // if (session) {
-    //     return {
-    //         redirect: {
-    //             destination: callbackUrl,
-    //         },
-    //     };
-    // }
-    // const csrfToken = await getCsrfToken(context);
-    // const providers = Object.values(await getProviders());
-    // return {
-    //     props: {
-    //         providers,
-    //         csrfToken,
-    //         callbackUrl,
-    //     },
-    // };
+        props: {
+            providers,
+            csrfToken,
+            callbackUrl,
+        },
+    };
 }

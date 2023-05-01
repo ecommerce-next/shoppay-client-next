@@ -12,7 +12,7 @@ import Router from "next/router";
 import DotLoaderSpinner from "../loaders/dotLoader";
 // import {useDispatch, useSelector} from "react-redux";
 
-const SignIn = ({user, setUser, handleChange, providers, setLoading}) => {
+const SignIn = ({user, setUser, handleChange, providers, setLoading, callbackUrl, csrfToken}) => {
     // const {user} = useSelector((state) => ({...state}));
     //const dispatch = useDispatch()
 
@@ -81,7 +81,13 @@ const SignIn = ({user, setUser, handleChange, providers, setLoading}) => {
                     }}
                 >
                     {(form) => (
-                        <Form>
+                        <Form method="post" action="/api/auth/signin/email">
+                            <input
+                                type="hidden"
+                                name="csrfToken"
+                                defaultValue={csrfToken}
+                            />
+
                             <LoginInput
                                 type="text"
                                 name="login_email"
