@@ -43,6 +43,7 @@ export default function Forgot() {
   return (
     <>
       {loading && <DotLoaderSpinner loading={loading} />}
+
       <Header country="" />
       <div className={styles.forgot}>
         <div>

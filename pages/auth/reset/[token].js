@@ -114,7 +114,8 @@ export async function getServerSideProps(context) {
         destination: "/",
       },
     };
-  }
+  };
+
   const token = query.token;
   const user_id = jwt.verify("pojadphjapidja", process.env.RESET_TOKEN_SECRET);
   if (user_id == null) {
