@@ -1,23 +1,57 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import axios from "axios";
-// import Image from "next/image";
-// import styles from '@/styles/Home.module.scss'
-import { useSession, signIn, signOut } from "next-auth/react";
-
+import { useSession } from "next-auth/react";
+import styles from "../styles/home.module.scss";
+import Main from "../components/home/main";
 
 export default function Home({country}) {
     const { data: session } = useSession()
     console.log(session)
 
     return (
-        <div>
-            <Header country={country}/>
-            {
-                session ? 'you are logged in' : 'you are not logged in'
-            }
-            <Footer country={country}/>
-        </div>
+        <>
+            <Header country={country} />
+            <div className={styles.home}>
+                <div className={styles.container}>
+                    <Main />
+                    {/*<FlashDeals />*/}
+                    {/*<div className={styles.home__category}>*/}
+                    {/*    <Category*/}
+                    {/*        header="Dresses"*/}
+                    {/*        products={women_dresses}*/}
+                    {/*        background="#5a31f4"*/}
+                    {/*    />*/}
+                    {/*    {!isMedium && (*/}
+                    {/*        <Category*/}
+                    {/*            header="Shoes"*/}
+                    {/*            products={women_shoes}*/}
+                    {/*            background="#3c811f"*/}
+                    {/*        />*/}
+                    {/*    )}*/}
+                    {/*    {isMobile && (*/}
+                    {/*        <Category*/}
+                    {/*            header="Shoes"*/}
+                    {/*            products={women_shoes}*/}
+                    {/*            background="#3c811f"*/}
+                    {/*        />*/}
+                    {/*    )}*/}
+                    {/*    <Category*/}
+                    {/*        header="Accessories"*/}
+                    {/*        products={women_accessories}*/}
+                    {/*        background="#000"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    {/*<ProductsSwiper products={women_swiper} />*/}
+                    {/*<div className={styles.products}>*/}
+                    {/*    {products.map((product) => (*/}
+                    {/*        <ProductCard product={product} key={product._id} />*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
+                </div>
+            </div>
+            <Footer country={country} />
+        </>
     )
 }
 
