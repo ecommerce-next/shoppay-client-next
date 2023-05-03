@@ -9,7 +9,6 @@ import {BiLeftArrowAlt} from "react-icons/bi";
 import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
-import DotLoaderSpinner from "../loaders/dotLoader";
 // import {useDispatch, useSelector} from "react-redux";
 
 const SignInComponent = ({user, setUser, handleChange, providers, setLoading, callbackUrl, csrfToken}) => {

@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import {Form, Formik} from "formik";
 import LoginInput from "../inputs/loginInput";
 import CircledIconBtn from "../buttons/circledIconBtn";
@@ -7,7 +6,6 @@ import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
 import axios from "axios";
-import DotLoaderSpinner from "../loaders/dotLoader";
 // import {useDispatch, useSelector} from "react-redux";
 
 const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
