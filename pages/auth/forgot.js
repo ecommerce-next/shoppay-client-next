@@ -17,6 +17,7 @@ export default function Forgot() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState("");
+
   const emailValidation = Yup.object({
     email: Yup.string()
       .required(
@@ -24,6 +25,7 @@ export default function Forgot() {
       )
       .email("Enter a valid email address."),
   });
+
   const forgotHandler = async () => {
     try {
       setLoading(true);
@@ -40,6 +42,7 @@ export default function Forgot() {
       setError(error.response.data.message);
     }
   };
+
   return (
     <>
       {loading && <DotLoaderSpinner loading={loading} />}
@@ -55,6 +58,7 @@ export default function Forgot() {
               Forgot your password ? <Link href="/">Login instead</Link>
             </span>
           </div>
+          <div className={styles.forgot__form}>
           <Formik
             enableReinitialize
             initialValues={{
@@ -83,6 +87,7 @@ export default function Forgot() {
               </Form>
             )}
           </Formik>
+        </div>
         </div>
       </div>
       <Footer country="" />
