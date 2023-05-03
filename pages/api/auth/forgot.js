@@ -11,6 +11,7 @@ handler.post(async (req, res) => {
     try {
         await db.connectDb();
         const {email} = req.body;
+
         const user = await User.findOne({email});
 
         if (!user) {
