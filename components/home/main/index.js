@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import { useSession } from "next-auth/react";
 import Header from "./Header";
 import Menu from "./Menu";
-import MainSwiper from "./Swiper";
+import MainSwiper from "./MainSwiper";
 import Offers from "./Offers";
 import User from "./User";
 // import "swiper/css";
