@@ -1,11 +1,8 @@
 import styles from "./styles.module.scss";
 import { offersArray } from "../../../data/home";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-// import required modules
 import { Pagination, Navigation } from "swiper";
 import Link from "next/link";
 
