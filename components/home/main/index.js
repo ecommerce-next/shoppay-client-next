@@ -2,11 +2,11 @@ import styles from "./styles.module.scss";
 import { useSession } from "next-auth/react";
 import Header from "./Header";
 import Menu from "./Menu";
-import MainSwiper from "./swiper";
-// import Offers from "./offers";
+import MainSwiper from "./Swiper";
+import Offers from "./Offers";
+import User from "./User";
 // import "swiper/css";
 // import "swiper/css/effect-cards";
-// import User from "./User";
 
 
 export default function Main() {
@@ -16,8 +16,8 @@ export default function Main() {
             <Header />
             <Menu />
             <MainSwiper />
-            {/*<Offers />*/}
-            {/*<User />*/}
+            <Offers />
+            <User />
         </div>
     );
 }
