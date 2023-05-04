@@ -18,6 +18,7 @@
       "swiper"
       "offers";
     grid-template-columns: 1fr;
+
     .menu {
       width: 100% !important;
       height: fit-content !important;
@@ -32,6 +33,7 @@
       }
     }
   }
+
   .menu {
     grid-area: menu;
     height: 580px;
@@ -104,6 +106,7 @@
       }
     }
   }
+
   .header {
     grid-area: header;
     height: 40px;
@@ -125,6 +128,7 @@
       }
     }
   }
+
   .swiper {
     grid-area: swiper;
     height: 300px;
@@ -132,6 +136,7 @@
     border-radius: 10px;
     box-shadow: $shadow-1;
   }
+
   .offers {
     position: relative;
     grid-area: offers;
@@ -179,6 +184,7 @@
       }
     }
   }
+
   .user {
     position: relative;
     grid-area: user;
@@ -280,6 +286,7 @@
     }
   }
 }
+
 .new {
   position: absolute;
   top: -8px;

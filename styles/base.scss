@@ -128,7 +128,7 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .swiper-pagination-bullet-active {
     background: $blue-color !important;
-    background: #ffff !important;
+    //background: #ffff !important;
     width: 13px !important;
   }
   .swiper-button-prev,
@@ -149,13 +149,7 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     right: -13px;
   }
 }
-.mainSwiper {
-  .swiper-slide {
-    img {
-      // object-fit: contain;
-    }
-  }
-}
+
 .offers_swiper {
   max-width: 700px;
   transform: translateX(35%);
