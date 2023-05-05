@@ -20,7 +20,7 @@ export default function FlashDeals() {
       </div>
       <Swiper
         slidesPerView={1}
-        spaceBetween={10}
+        spaceBetween={20}
         navigation={true}
         modules={[Navigation]}
         className="flashDeals__swiper"

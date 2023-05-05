@@ -2,12 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import {calculateDiff} from "./utils";
-// const defaultRemainingTime = {
-//   seconds: "00",
-//   minutes: "00",
-//   hours: "00",
-//   days: "00",
-// };
 
 export default function Countdown({ date }) {
   const [timeInMs, setTimeInMs] = useState(date.getTime());
