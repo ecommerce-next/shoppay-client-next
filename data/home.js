@@ -367,6 +367,7 @@ export const userLinksArray = [
 
 export const flashDealsArray = [
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/09/15/1663220709c947ca4ad9aefd9c1f4baf5915653468_thumbnail_600x.webp",
         price: "91",
@@ -375,6 +376,7 @@ export const flashDealsArray = [
         sold: "30",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/09/20/1663668243e6d8f250648c2f34988320c046cba68f_thumbnail_405x552.webp",
         price: "73",
@@ -383,6 +385,7 @@ export const flashDealsArray = [
         sold: "61",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/03/25/164818761997d2ccb1de50aed18da9d77502717405_thumbnail_405x552.webp",
         price: "254",
@@ -391,6 +394,7 @@ export const flashDealsArray = [
         sold: "12",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/05/13/165244123600952e503ccab89dd363c9b71f9094f8_thumbnail_405x552.webp",
         price: "1687",
@@ -399,6 +403,7 @@ export const flashDealsArray = [
         sold: "96",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/06/17/16554568735029a68267cacc48382e23027667093f_thumbnail_405x552.webp",
         price: "126",
@@ -407,6 +412,7 @@ export const flashDealsArray = [
         sold: "12",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/08/17/16607290552013caeedd00666350d71774fcd6e95f_thumbnail_405x552.webp",
         price: "65",
@@ -415,6 +421,7 @@ export const flashDealsArray = [
         sold: "82",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/09/02/166210785062f36a63bcecd00693783c4b6cd0c2a2_thumbnail_600x.webp",
         price: "41",
@@ -423,6 +430,7 @@ export const flashDealsArray = [
         sold: "52",
     },
     {
+        id: uuidv4(),
         image:
             "https://img.ltwebstatic.com/images3_pi/2022/09/01/1662028598b9164c30a8410fc9d71b81fc63748d4e_thumbnail_405x552.webp",
         price: "288",

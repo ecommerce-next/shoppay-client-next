@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import styles from "../styles/home.module.scss";
 import Main from "../components/home/main";
+import FlashDeals from "../components/home/flashDeals";
 
 export default function Home({country}) {
     const { data: session } = useSession()
@@ -15,7 +16,7 @@ export default function Home({country}) {
             <div className={styles.home}>
                 <div className={styles.container}>
                     <Main />
-                    {/*<FlashDeals />*/}
+                    <FlashDeals />
                     {/*<div className={styles.home__category}>*/}
                     {/*    <Category*/}
                     {/*        header="Dresses"*/}
