@@ -1,48 +1,39 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import {useEffect} from "react";
+import {useState} from "react";
 import styles from "./styles.module.scss";
 import {calculateDiff} from "./utils";
 
-export default function Countdown({ date }) {
-  const [timeInMs, setTimeInMs] = useState(date.getTime());
-  const [remainingTime, setRemainingTime] = useState();
+export default function Countdown({date}) {
+    const [timeInMs, setTimeInMs] = useState(date.getTime());
+    const [remainingTime, setRemainingTime] = useState();
 
-  useEffect(() => {
-    setTimeInMs(date.getTime());
-  }, [date]);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      updateRemainingTime(timeInMs);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [timeInMs]);
-  const updateRemainingTime = (timeInMs) => {
-    setRemainingTime(calculateDiff(timeInMs));
-  };
+    useEffect(() => {
+        setTimeInMs(date.getTime());
+    }, [date]);
+    useEffect(() => {
+      const interval = setInterval(() => {
+        updateRemainingTime(timeInMs);
+      }, 1000);
+      return () => clearInterval(interval);
+    }, [timeInMs]);
 
-  return (
-    <div className={styles.countdown}>
-      {/*
-      {[...Array(remainingTime?.days.length).keys()].map((d, i) => {
-        if (remainingTime?.days == 0) {
-          return;
-        }
-        return (
-          <>
-            <span>{remainingTime?.days.slice(i, i + 1)}</span> <b>:</b>
-          </>
-        );
-      })}
+    const updateRemainingTime = (timeInMs) => {
+        setRemainingTime(calculateDiff(timeInMs));
+    };
 
-      */}
-      <span>{remainingTime?.hours.slice(0, 1)}</span>
-      <span>{remainingTime?.hours.slice(1, 2)}</span>
-      <b>:</b>
-      <span>{remainingTime?.minutes.slice(0, 1)}</span>
-      <span>{remainingTime?.minutes.slice(1, 2)}</span>
-      <b>:</b>
-      <span>{remainingTime?.seconds.slice(0, 1)}</span>
-      <span>{remainingTime?.seconds.slice(1, 2)}</span>
-    </div>
-  );
+    return (
+        <div className={styles.countdown}>
+            <span>{remainingTime?.days}</span>
+            <b>---</b>
+
+            <span>{remainingTime?.hours.slice(0, 1)}</span>
+            <span>{remainingTime?.hours.slice(1, 2)}</span>
+            <b>:</b>
+            <span>{remainingTime?.minutes.slice(0, 1)}</span>
+            <span>{remainingTime?.minutes.slice(1, 2)}</span>
+            <b>:</b>
+            <span>{remainingTime?.seconds.slice(0, 1)}</span>
+            <span>{remainingTime?.seconds.slice(1, 2)}</span>
+        </div>
+    );
 }
