@@ -17,10 +17,6 @@ export function calculateDiff(timeInMs) {
     const minutes = Math.floor((diff % (60 * 60)) / 60);
     const seconds = Math.floor(diff % 60);
     return {
-        // seconds: seconds.toString(),
-        // minutes: minutes.toString(),
-        // hours: hours.toString(),
-        // days: days.toString(),
         seconds: padWithZeros(seconds, 2),
         minutes: padWithZeros(minutes, 2),
         hours: padWithZeros(hours, 2),
