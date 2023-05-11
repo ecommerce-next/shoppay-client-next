@@ -13,6 +13,8 @@ import {
     women_dresses,
     women_shoes,
     women_swiper,
+    gamingSwiper,
+    homeImprovSwiper,
 } from "../data/home";
 import ProductsSwiper from "../components/productsSwiper";
 import Product from "../models/Product";
@@ -31,6 +33,7 @@ export default function Home({country, products}) {
                 <div className={styles.container}>
                     <Main />
                     <FlashDeals />
+
                     <div className={styles.home__category}>
                         <Category
                             header="Dresses"
@@ -57,7 +60,20 @@ export default function Home({country, products}) {
                             background="#000"
                         />
                     </div>
+
                     <ProductsSwiper products={women_swiper} />
+                    <ProductsSwiper
+                        products={gamingSwiper}
+                        header="For Gamers"
+                        bg="#2f82ff"
+                    />
+                    <ProductsSwiper
+                        products={homeImprovSwiper}
+                        header="House Improvements"
+                        bg="#5a31f4"
+                    />
+
+
                     <div className={styles.products}>
                         {products.map((product) => (
                             <ProductCard product={product} key={product._id} />
@@ -99,17 +115,3 @@ export async function getServerSideProps() {
         }
     }
 }
-
-/*
-            <ProductsSwiper
-            products={gamingSwiper}
-            header="For Gamers"
-            bg="#2f82ff"
-          />
-          <ProductsSwiper
-            products={homeImprovSwiper}
-            header="House Improvements"
-            bg="#5a31f4"
-          />
-            */
-
