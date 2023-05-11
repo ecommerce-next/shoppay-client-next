@@ -61,7 +61,11 @@ export default function Home({country, products}) {
                         />
                     </div>
 
-                    <ProductsSwiper products={women_swiper} />
+                    <ProductsSwiper
+                        products={women_swiper}
+                        header="Wonen Clothes"
+                        bg="pink"
+                    />
                     <ProductsSwiper
                         products={gamingSwiper}
                         header="For Gamers"
@@ -72,7 +76,6 @@ export default function Home({country, products}) {
                         header="House Improvements"
                         bg="#5a31f4"
                     />
-
 
                     <div className={styles.products}>
                         {products.map((product) => (
