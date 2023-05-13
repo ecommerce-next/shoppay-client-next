@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper";
-export default function SimilarSwiper() {
+const SimilarSwiper = () => {
   return (
     <Swiper
       slidesPerView={4}
@@ -34,3 +34,5 @@ export default function SimilarSwiper() {
     </Swiper>
   );
 }
+
+export default SimilarSwiper;

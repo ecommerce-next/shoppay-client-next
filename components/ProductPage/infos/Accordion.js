@@ -43,11 +43,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
     borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-export default function AccordionComponent({details}) {
+const AccordionComponent = ({details}) => {
     const [expanded, setExpanded] = React.useState("");
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
+
     return (
         <div className={styles.infos__accordian}>
             <Accordion
@@ -97,3 +98,5 @@ export default function AccordionComponent({details}) {
         </div>
     );
 }
+
+export default AccordionComponent;

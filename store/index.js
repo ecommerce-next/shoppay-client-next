@@ -5,11 +5,12 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import { persistReducer } from "redux-persist";
 import cart from './cartSlice'
 import user from "./userSlice";
-
+import dialog from "./DialogSlice";
 
 const reducers = combineReducers({
     cart,
     user,
+    dialog
 });
 
 const config = {
