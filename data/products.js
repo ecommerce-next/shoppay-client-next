@@ -1,4 +1,4 @@
-export const simillar_products = [
+export const similar_products = [
   "https://img.ltwebstatic.com/images3_pi/2021/12/01/163835112450f18e45812a67de27b54b856b289a1c_thumbnail_600x.webp",
   "https://img.ltwebstatic.com/images3_pi/2022/07/25/16587323030e63f33718ec8ee0d5b8f433d6297d3a_thumbnail_600x.webp",
   "https://img.ltwebstatic.com/images3_pi/2022/10/08/1665196724a73dce71c0ef37de4e337f2ec4e3ab66_thumbnail_600x.webp",
