@@ -6,15 +6,15 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, updateCart} from "../../../store/cartSlice";
 import {signIn, useSession} from "next-auth/react";
-import Link from "next/Link";
+import Link from "next/link";
 import Rating from "@mui/material/Rating";
 import {TbPlus, TbMinus} from "react-icons/tb";
 import {BsHandbagFill, BsHeart} from "react-icons/bs";
-import {hideDialog, showDialog} from "../../../store/DialogSlice";
-import DialogModal from "../../dialogModal";
 import AccordionComponent from "./Accordion";
 import SimilarSwiper from "./SimillarSwiper";
 import Share from "./share";
+import {hideDialog, showDialog} from "../../../store/DialogSlice";
+import DialogModal from "../../dialogModal";
 
 export default function Infos({product, setActiveImg}) {
     const router = useRouter();
@@ -49,7 +49,7 @@ export default function Infos({product, setActiveImg}) {
         );
         if (qty > data.quantity) {
             setError(
-                "The Quantity you have choosed is more than in stock. Try and lower the Qty"
+                "The quantity you have chosen exceeds what is in stock. Please try to reduce the quantity."
             );
         } else if (data.quantity < 1) {
             setError("This Product is out of stock.");
@@ -158,8 +158,8 @@ export default function Infos({product, setActiveImg}) {
                     <h4>Select a Size : </h4>
                     <div className={styles.infos__sizes_wrap}>
                         {product.sizes.map((size, i) => (
+                            <div key={size.size}>
                             <Link
-                                key={size.size}
                                 href={`/product/${product.slug}?style=${router.query.style}&size=${i}`}
                             >
                                 <div
@@ -169,6 +169,7 @@ export default function Infos({product, setActiveImg}) {
                                     {size.size}
                                 </div>
                             </Link>
+                            </div>
                         ))}
                     </div>
                 </div>

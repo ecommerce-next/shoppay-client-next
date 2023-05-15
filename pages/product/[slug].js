@@ -11,6 +11,7 @@ import { useState } from "react";
 import MainSwiper from "../../components/productPage/mainSwiper";
 import Infos from "../../components/ProductPage/infos";
 import Footer from "../../components/footer";
+//import ProductsSwiper from "../../components/productsSwiper";
 
 
 export default function ProductPage ({ product, related }) {
@@ -41,9 +42,9 @@ export default function ProductPage ({ product, related }) {
             <Infos product={product} setActiveImg={setActiveImg} />
           </div>
           {/*<Reviews product={product} />*/}
-          {/*
-          <ProductsSwiper products={related} />
-          */}
+
+          {/*<ProductsSwiper products={related} />*/}
+
         </div>
       </div>
       <Footer country={country}/>
@@ -58,7 +59,7 @@ export async function getServerSideProps(context) {
   const size = query.size || 0;
 
   //------------
-  db.connectDb();
+  await db.connectDb();
 
   let product = await Product.findOne({ slug })
     .populate({ path: "category", model: Category })
@@ -136,7 +137,7 @@ export async function getServerSideProps(context) {
       product.reviews.length
     ).toFixed(1);
   }
-  db.disconnectDb();
+  await db.disconnectDb();
   //console.log("related", related);
 
   return {

@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 import { similar_products } from "../../../data/products";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
