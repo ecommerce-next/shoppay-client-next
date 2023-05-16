@@ -6,7 +6,7 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import styles from "./styles.module.scss";
 
-const Accordion = styled((props) => (
+const AccordionWrapper = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({theme}) => ({
     border: `1px solid ${theme.palette.divider}`,
@@ -43,7 +43,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
     borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-const AccordionComponent = ({details}) => {
+export default function Accordion({details}) {
     const [expanded, setExpanded] = React.useState("");
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
@@ -51,7 +51,7 @@ const AccordionComponent = ({details}) => {
 
     return (
         <div className={styles.infos__accordian}>
-            <Accordion
+            <AccordionWrapper
                 expanded={expanded === "panel1"}
                 onChange={handleChange("panel1")}
                 className={styles.accordian}
@@ -78,8 +78,9 @@ const AccordionComponent = ({details}) => {
                             </div>
                         ))}
                 </AccordionDetails>
-            </Accordion>
-            <Accordion
+            </AccordionWrapper>
+
+            <AccordionWrapper
                 expanded={expanded === "panel2"}
                 onChange={handleChange("panel2")}
                 className={styles.accordian}
@@ -94,9 +95,7 @@ const AccordionComponent = ({details}) => {
                 <AccordionDetails>
                     <div className={styles.infos__accordian_grid}></div>
                 </AccordionDetails>
-            </Accordion>
+            </AccordionWrapper>
         </div>
     );
 }
-
-export default AccordionComponent;

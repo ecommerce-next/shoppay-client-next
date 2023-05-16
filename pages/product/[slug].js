@@ -11,17 +11,18 @@ import { useState } from "react";
 import MainSwiper from "../../components/productPage/mainSwiper";
 import Infos from "../../components/ProductPage/infos";
 import Footer from "../../components/footer";
+import Reviews from "../../components/ProductPage/reviews";
+import {v4 as uuidv4} from 'uuid';
 //import ProductsSwiper from "../../components/productsSwiper";
 
 
-export default function ProductPage ({ product, related }) {
-  console.log(product)
+export default function product ({ product, related }) {
   const [activeImg, setActiveImg] = useState("");
   const country = {
     name: "United State",
     flag: "https://www.seekpng.com/png/full/3-34817_picture-download-american-flag-clipart-no-background-transparent.png",
   };
-  //console.log(product.subCategories)
+  console.log(product)
 
   return (
     <>
@@ -41,7 +42,7 @@ export default function ProductPage ({ product, related }) {
             <MainSwiper images={product.images} activeImg={activeImg} name={product.name}/>
             <Infos product={product} setActiveImg={setActiveImg} />
           </div>
-          {/*<Reviews product={product} />*/}
+          <Reviews product={product} />
 
           {/*<ProductsSwiper products={related} />*/}
 
@@ -54,6 +55,7 @@ export default function ProductPage ({ product, related }) {
 
 export async function getServerSideProps(context) {
   const { query } = context;
+  console.log(query)
   const slug = query.slug;
   const style = query.style;
   const size = query.size || 0;
@@ -96,18 +98,23 @@ export async function getServerSideProps(context) {
     quantity: subProduct.sizes[size].qty,
     ratings: [
       {
+        id: uuidv4(),
         percentage: calculatePercentage("5"),
       },
       {
+        id: uuidv4(),
         percentage: calculatePercentage("4"),
       },
       {
+        id: uuidv4(),
         percentage: calculatePercentage("3"),
       },
       {
+        id: uuidv4(),
         percentage: calculatePercentage("2"),
       },
       {
+        id: uuidv4(),
         percentage: calculatePercentage("1"),
       },
     ],

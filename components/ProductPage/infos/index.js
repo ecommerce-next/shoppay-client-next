@@ -10,7 +10,7 @@ import Link from "next/link";
 import Rating from "@mui/material/Rating";
 import {TbPlus, TbMinus} from "react-icons/tb";
 import {BsHandbagFill, BsHeart} from "react-icons/bs";
-import AccordionComponent from "./Accordion";
+import Accordion from "./Accordion";
 import SimilarSwiper from "./SimillarSwiper";
 import Share from "./share";
 import {hideDialog, showDialog} from "../../../store/DialogSlice";
@@ -18,13 +18,14 @@ import DialogModal from "../../dialogModal";
 
 export default function Infos({product, setActiveImg}) {
     const router = useRouter();
-    const dispatch = useDispatch();
     const {data: session} = useSession();
+    const {cart} = useSelector((state) => ({...state}));
+    const dispatch = useDispatch();
+
     const [size, setSize] = useState(router.query.size);
     const [qty, setQty] = useState(1);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const {cart} = useSelector((state) => ({...state}));
 
     useEffect(() => {
         dispatch(hideDialog());
@@ -158,8 +159,8 @@ export default function Infos({product, setActiveImg}) {
                     <h4>Select a Size : </h4>
                     <div className={styles.infos__sizes_wrap}>
                         {product.sizes.map((size, i) => (
-                            <div key={size.size}>
                             <Link
+                                key={size.size}
                                 href={`/product/${product.slug}?style=${router.query.style}&size=${i}`}
                             >
                                 <div
@@ -169,7 +170,6 @@ export default function Infos({product, setActiveImg}) {
                                     {size.size}
                                 </div>
                             </Link>
-                            </div>
                         ))}
                     </div>
                 </div>
@@ -215,7 +215,7 @@ export default function Infos({product, setActiveImg}) {
                 {success && <span className={styles.success}>{success}</span>}
 
                 <Share/>
-                <AccordionComponent details={[product.description, ...product.details]}/>
+                <Accordion details={[product.description, ...product.details]}/>
                 <SimilarSwiper/>
             </div>
         </div>
