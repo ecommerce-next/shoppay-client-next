@@ -4,13 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSession, signIn } from "next-auth/react";
 import {saveCart} from "../requests/user";
 import styles from "../styles/cart.module.scss";
-import Header from "../components/header";
+import Header from "../components/cart/header";
 import CartHeader from "../components/cart/cartHeader";
+import Empty from "../components/cart/empty";
 
-const country = {
-    name: "United State",
-        flag: "https://www.seekpng.com/png/full/3-34817_picture-download-american-flag-clipart-no-background-transparent.png",
-};
 const Cart = () => {
     const Router = useRouter();
     const { data: session } = useSession();
@@ -46,9 +43,8 @@ const Cart = () => {
 
     return (
         <>
-            <Header country={country}/><div className={styles.cart}>
-            LALALAL
-
+            <Header />
+            <div className={styles.cart}>
             {cart.cartItems?.length > 0 ? (
                 <div className={styles.cart__container}>
                     <CartHeader
@@ -77,8 +73,7 @@ const Cart = () => {
                     {/*<PaymentMethods />*/}
                 </div>
             ) : (
-                ""
-                // <Empty />
+                <Empty />
             )}
             {/*<ProductsSwiper products={women_swiper} />*/}
         </div>
