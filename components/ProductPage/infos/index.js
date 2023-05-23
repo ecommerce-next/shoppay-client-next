@@ -19,7 +19,8 @@ import DialogModal from "../../dialogModal";
 export default function Infos({product, setActiveImg}) {
     const router = useRouter();
     const {data: session} = useSession();
-    const {cart} = useSelector((state) => ({...state}));
+     const {cart} = useSelector((state) => ({...state}));
+
     const dispatch = useDispatch();
 
     const [size, setSize] = useState(router.query.size);
@@ -40,6 +41,7 @@ export default function Infos({product, setActiveImg}) {
         }
     }, [router.query.size]);
 
+
     const addToCartHandler = async () => {
         if (!router.query.size) {
             setError("Please Select a size");
@@ -48,16 +50,18 @@ export default function Infos({product, setActiveImg}) {
         const {data} = await axios.get(
             `/api/product/${product._id}?style=${product.style}&size=${router.query.size}`
         );
-        if (qty > data.quantity) {
+        //const data = dispatch(getCarts({id: product._id, style:product.style, size:router.query.size}) );
+
+        if (qty > data?.quantity) {
             setError(
                 "The quantity you have chosen exceeds what is in stock. Please try to reduce the quantity."
             );
-        } else if (data.quantity < 1) {
+        } else if (data?.quantity < 1) {
             setError("This Product is out of stock.");
             return;
         } else {
-            let _uid = `${data._id}_${product.style}_${router.query.size}`;
-            let exist = cart.cartItems.find((p) => p._uid === _uid);
+            let _uid = `${data?._id}_${product.style}_${router.query.size}`;
+            let exist = cart.cartItems?.find(item => item._uid === _uid);
             if (exist) {
                 let newCart = cart.cartItems.map((p) => {
                     if (p._uid == exist._uid) {
@@ -89,6 +93,7 @@ export default function Infos({product, setActiveImg}) {
                 product_id: product._id,
                 style: product.style,
             });
+
             dispatch(
                 showDialog({
                     header: "Product Added to Wishlist Successfully",
@@ -101,6 +106,7 @@ export default function Infos({product, setActiveImg}) {
                 })
             );
         } catch (error) {
+
             dispatch(
                 showDialog({
                     header: "Wishlist Error",

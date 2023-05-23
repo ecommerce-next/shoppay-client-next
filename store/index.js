@@ -1,16 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
+import {configureStore} from "@reduxjs/toolkit";
+import {combineReducers} from "redux";
 import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
-import { persistReducer } from "redux-persist";
-import cart from './cartSlice'
+import {persistReducer} from "redux-persist";
+import cartReducer from './cartSlice'
 import user from "./userSlice";
 import dialog from "./DialogSlice";
 
 const reducers = combineReducers({
-    cart,
+    cart: cartReducer,
     user,
-    dialog
+    dialog,
 });
 
 const config = {
@@ -18,7 +18,7 @@ const config = {
     storage
 };
 
-const reducer= persistReducer(config, reducers);
+const reducer = persistReducer(config, reducers);
 
 const store = configureStore({
     reducer: reducer,

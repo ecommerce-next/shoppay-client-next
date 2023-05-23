@@ -23,7 +23,7 @@ export default function Review({review}) {
                         style={{color: "#facf19"}}
                     />
                     <p>{review.review}</p>
-                    <p>
+                    <div>
                         <span>Overall Fit:</span>
                         {review.fit}
                         &nbsp;&nbsp;
@@ -37,7 +37,7 @@ export default function Review({review}) {
                                 className={styles.review__img}
                             />
                         </div>
-                    </p>
+                    </div>
                 </div>
             </div>
             <div className={styles.flex}>
