@@ -19,7 +19,7 @@ import DialogModal from "../../dialogModal";
 export default function Infos({product, setActiveImg}) {
     const router = useRouter();
     const {data: session} = useSession();
-     const {cart} = useSelector((state) => ({...state}));
+    const {cart} = useSelector((state) => ({...state}));
 
     const dispatch = useDispatch();
 
