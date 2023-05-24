@@ -8,6 +8,10 @@ import Header from "../components/cart/header";
 import CartHeader from "../components/cart/cartHeader";
 import Empty from "../components/cart/empty";
 import Product from "../components/cart/product";
+import Checkout from "../components/cart/checkout";
+import PaymentMethods from "../components/cart/paymentMethods";
+import ProductsSwiper from "../components/productsSwiper";
+import { women_swiper } from "../data/home";
 
 const Cart = () => {
     const Router = useRouter();
@@ -65,19 +69,19 @@ const Cart = () => {
                                 />
                             ))}
                         </div>
-                        {/*<Checkout*/}
-                        {/*    subtotal={subtotal}*/}
-                        {/*    shippingFee={shippingFee}*/}
-                        {/*    total={total}*/}
-                        {/*    selected={selected}*/}
-                        {/*    saveCartToDbHandler={saveCartToDbHandler}*/}
-                        {/*/>*/}
-                        {/*<PaymentMethods />*/}
+                        <Checkout
+                            subtotal={subtotal}
+                            shippingFee={shippingFee}
+                            total={total}
+                            selected={selected}
+                            saveCartToDbHandler={saveCartToDbHandler}
+                        />
+                        <PaymentMethods />
                     </div>
                 ) : (
                     <Empty/>
                 )}
-                {/*<ProductsSwiper products={women_swiper} />*/}
+                <ProductsSwiper products={women_swiper} />
             </div>
         </>
     );
