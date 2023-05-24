@@ -36,5 +36,10 @@
     height: 50px;
     font-size: 19px;
     cursor: pointer;
+    &:disabled {
+      background: #eee;
+      cursor: not-allowed;
+    }
   }
+
 }
