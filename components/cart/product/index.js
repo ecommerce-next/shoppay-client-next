@@ -10,6 +10,7 @@ export default function Product({product, selected, setSelected}) {
     const {cart} = useSelector((state) => ({...state}));
     const [active, setActive] = useState();
     console.log(active);
+
     useEffect(() => {
         const check = selected.find((p) => p._uid == product._uid);
         setActive(check);
