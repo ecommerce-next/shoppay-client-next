@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const saveAddress = async (address, userId) => {
   try {
-    const { data } = await axios.post("/api/user/saveAddress", {
+    const { data } = await axios.post("/api/address/saveAddress", {
       address,
       userId,
     });
@@ -14,7 +14,7 @@ export const saveAddress = async (address, userId) => {
 
 export const changeActiveAddress = async (id) => {
   try {
-    const { data } = await axios.put("/api/user/manageAddress", {
+    const { data } = await axios.put("/api/address/manageAddress", {
       id,
     });
     return data;
@@ -25,7 +25,7 @@ export const changeActiveAddress = async (id) => {
 
 export const deleteAddress = async (id) => {
   try {
-    const { data } = await axios.delete("/api/user/manageAddress", {
+    const { data } = await axios.delete("/api/address/deleteAddress", {
       data: { id },
     });
     return data;
@@ -34,9 +34,3 @@ export const deleteAddress = async (id) => {
   }
 };
 
-export const applyCoupon = async (coupon) => {
-  const { data } = await axios.post("/api/user/applyCoupon", {
-    coupon,
-  });
-  return data;
-};
