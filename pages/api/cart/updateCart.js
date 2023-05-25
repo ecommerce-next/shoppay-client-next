@@ -26,7 +26,6 @@ router.patch(async (req, res) => {
             }
         });
 
-        console.log(await Promise.all(promises))
         return res.json(await Promise.all(promises));
 
         await db.disconnectDb();
