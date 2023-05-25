@@ -17,6 +17,7 @@ export default function Product({product, selected, setSelected}) {
         setActive(check);
     }, [selected]);
 
+
     const updateQty = (type) => {
         let newCart = cart.cartItems.map((p) => {
             if (p._uid == product._uid) {
@@ -45,6 +46,7 @@ export default function Product({product, selected, setSelected}) {
         }
     };
 
+    console.log(product, 'product==============================')
     return (
         <div className={`${styles.card} ${styles.product}`}>
             {product.quantity < 1 && <div className={styles.blur}></div>}
@@ -78,7 +80,7 @@ export default function Product({product, selected, setSelected}) {
                     <div className={styles.product__style}>
                         <img src={product.color.image} alt=""/>
                         {product.size && <span>{product.size}</span>}
-                        {product.price && <span>{product.price.toFixed(2)}$</span>}
+                        {product.price && <span>{Number(product.price).toFixed(2)}$</span>}
                         <MdOutlineKeyboardArrowRight/>
                     </div>
                     <div className={styles.product__priceQty}>
@@ -118,7 +120,7 @@ export default function Product({product, selected, setSelected}) {
                     </div>
                     {product.quantity < 1 && (
                         <div className={styles.notAvailable}>
-                            This product is out of stock, Add it to your whishlist it may get
+                            This product is out of stock, Add it to your wishlist it may get
                             restocked.
                         </div>
                     )}

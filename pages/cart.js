@@ -2,7 +2,7 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useSession, signIn} from "next-auth/react";
-import {saveCart} from "../requests/user";
+import {saveCartQuery, updateCartQuery} from "../queries/cart";
 import styles from "../styles/cart.module.scss";
 import Header from "../components/cart/header";
 import CartHeader from "../components/cart/cartHeader";
@@ -11,12 +11,15 @@ import Product from "../components/cart/product";
 import Checkout from "../components/cart/checkout";
 import PaymentMethods from "../components/cart/paymentMethods";
 import ProductsSwiper from "../components/productsSwiper";
-import { women_swiper } from "../data/home";
+import {women_swiper} from "../data/home";
+import {updateCart} from "../store/cartSlice";
+import axios from "axios";
 
 const Cart = () => {
     const Router = useRouter();
     const {data: session} = useSession();
     const [selected, setSelected] = useState([]);
+    console.log(selected, "selected")
     const {cart} = useSelector((state) => ({...state}));
     const dispatch = useDispatch();
     //-----------------------
@@ -25,24 +28,31 @@ const Cart = () => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        setShippingFee(
-            selected.reduce((a, c) => a + Number(c.shipping), 0).toFixed(2)
-        );
+        setShippingFee(selected.reduce((a, c) => a + Number(c.shipping), 0).toFixed(2));
         setSubtotal(selected.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2));
-        setTotal(
-            (
-                selected.reduce((a, c) => a + c.price * c.qty, 0) + Number(shippingFee)
-            ).toFixed(2)
-        );
+        setTotal((selected.reduce((a, c) => a + c.price * c.qty, 0) + Number(shippingFee)).toFixed(2));
     }, [selected]);
+
+    useEffect(() => {
+        const update = async () => {
+            const {data} = await axios.patch("/api/cart/updateCart", {
+                products: cart.cartItems,
+            });
+            // const {data} = await updateCartQuery({products: cart.cartItems});
+            dispatch(updateCart(data));
+        };
+        if (cart.cartItems?.length > 0) {
+             update();
+        }
+    }, []);
 
     //-----------------------
     const saveCartToDbHandler = async () => {
         if (session) {
-            const res = saveCart(selected);
-            Router.push("/checkout");
+            await saveCartQuery(selected);
+            await Router.push("/checkout");
         } else {
-            signIn();
+            await signIn();
         }
     };
 
@@ -76,12 +86,12 @@ const Cart = () => {
                             selected={selected}
                             saveCartToDbHandler={saveCartToDbHandler}
                         />
-                        <PaymentMethods />
+                        <PaymentMethods/>
                     </div>
                 ) : (
                     <Empty/>
                 )}
-                <ProductsSwiper products={women_swiper} />
+                <ProductsSwiper products={women_swiper}/>
             </div>
         </>
     );

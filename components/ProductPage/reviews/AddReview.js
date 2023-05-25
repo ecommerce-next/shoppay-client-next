@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 import {hideDialog, showDialog} from "../../../store/DialogSlice";
 import DialogModal from "../../../components/dialogModal";
 import dataURItoBlob from "../../../utils/dataURItoBlob";
-import {uploadImages} from "../../../requests/upload";
+import {uploadImages} from "../../../queries/upload";
 import axios from "axios";
 import {ClipLoader} from "react-spinners";
 //import { FaLastfmSquare } from "react-icons/fa";
