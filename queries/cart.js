@@ -7,7 +7,7 @@ export const saveCartQuery = async (cart) => {
         });
         return data;
     } catch (err) {
-        return err.response.data.message;
+        return err.message;
     }
 };
 
@@ -19,6 +19,6 @@ export const saveCartQuery = async (cart) => {
 //         });
 //         return data;
 //     } catch (err) {
-//         return err.response.data.message;
+//         return err.message;
 //     }
 // };

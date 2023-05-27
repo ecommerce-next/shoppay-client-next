@@ -8,7 +8,8 @@ export const saveAddress = async (address, userId) => {
     });
     return data;
   } catch (error) {
-    return error.response.data.message;
+    console.log(error);
+    return error.message;
   }
 };
 
@@ -19,7 +20,7 @@ export const changeActiveAddress = async (id) => {
     });
     return data;
   } catch (error) {
-    return error.response.data.message;
+    return error.message;
   }
 };
 
@@ -30,7 +31,7 @@ export const deleteAddress = async (id) => {
     });
     return data;
   } catch (error) {
-    return error.response.data.message;
+    return error.message;
   }
 };
 
