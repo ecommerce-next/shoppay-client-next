@@ -15,8 +15,9 @@ export default function Checkout({cart, user}) {
     const [paymentMethod, setPaymentMethod] = useState("");
     const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
     const [selectedAddress, setSelectedAddress] = useState("");
+
     useEffect(() => {
-        let check = addresses.find((ad) => ad.active == true);
+        let check = addresses?.find((ad) => ad.active == true);
         if (check) {
             setSelectedAddress(check);
         } else {

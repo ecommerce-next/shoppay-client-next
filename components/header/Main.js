@@ -22,7 +22,7 @@ const Main = () => {
 
                 <Link href='/cart' className={styles.cart}>
                     <FaOpencart />
-                    <span>{cart? cart.length : 0}</span>
+                    <span>{cart.cartItems? cart.cartItems.length : 0}</span>
                 </Link>
             </div>
         </div>

@@ -1,24 +1,25 @@
-import nc from "next-connect";
+import { createRouter } from 'next-connect';
 import User from "../../../models/User";
 import db from "../../../utils/db";
 import auth from "../../../middleware/auth";
-const handler = nc().use(auth);
+const router = createRouter().use(auth);
 
-handler.post(async (req, res) => {
+router.post(async (req, res) => {
   try {
-    db.connectDb();
+    await db.connectDb();
     const { address } = req.body;
+    console.log(address, 'address')
     const user = User.findById(req.user);
     await user.updateOne({
       $push: {
         address: address,
       },
     });
-    db.disconnectDb();
+    await db.disconnectDb();
     return res.json({ addresses: user.address });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 });
 
-export default handler;
+export default router.handler()

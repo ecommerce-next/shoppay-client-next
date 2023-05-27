@@ -4,7 +4,6 @@ import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import "yup-phone";
 import ShippingInput from "../../inputs/shippingInput";
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {countries} from "../../../data/countries";
 import SingularSelect from "../../selects/SingularSelect";
 import {
@@ -56,22 +55,22 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
             .min(3, "Last name must be atleast 3 characters long.")
             .max(20, "Last name must be less than 20 characters long."),
         phoneNumber: Yup.string()
+            //.phone()
             .required("Phone number is required.")
-            // .phone()
-            .min(3, "Phone number must be atleast 3 characters long.")
-            .max(30, "Phone number must be less than 20 characters long."),
+            .min(11, "Phone number must be at least 11 characters long.")
+            .max(11, "Phone number must be less than 11 characters long."),
         state: Yup.string()
             .required("State name is required.")
-            .min(2, "State name should contain 2-60 characters..")
-            .max(60, "State name should contain 2-60 characters."),
+            .min(2, "State name should contain 2-20 characters..")
+            .max(20, "State name should contain 2-20 characters."),
         city: Yup.string()
             .required("City name is required.")
-            .min(2, "City name should contain 2-60 characters.")
-            .max(60, "City name should contain 2-60 characters."),
+            .min(2, "City name should contain 2-20 characters.")
+            .max(20, "City name should contain 2-20 characters."),
         zipCode: Yup.string()
             .required("ZipCode/Postal is required.")
-            .min(2, "ZipCode/Postal should contain 2-30 characters..")
-            .max(30, "ZipCode/Postal should contain 2-30 characters."),
+            .min(4, "ZipCode/Postal should contain at least 4 characters..")
+            .max(8, "ZipCode/Postal should contain no more than 8 characters."),
         address1: Yup.string()
             .required("Address Line 1 is required.")
             .min(5, "Address Line 1 should contain 5-100 characters.")
@@ -102,6 +101,8 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
         setAddresses(res.addresses);
     };
 
+    console.log(addresses, "addresses");
+
     return (
         <div className={styles.shipping}>
             {!profile && (
@@ -110,7 +111,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
                 </div>
             )}
             <div className={styles.addresses}>
-                {addresses.map((address) => (
+                {addresses && addresses.map((address) => (
                     <div key={address._id} style={{position: "relative"}}>
                         <div
                             className={styles.address__delete}
@@ -174,7 +175,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
                         saveShippingHandler();
                     }}
                 >
-                    {(formik) => (
+                    {() => (
                         <Form>
                             <SingularSelect
                                 name="country"
