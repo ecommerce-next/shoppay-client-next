@@ -1,4 +1,4 @@
-import nc from "next-connect";
+import {createRouter} from 'next-connect';
 import bcrypt from "bcrypt";
 import {validateEmail} from "../../../utils/validation";
 import db from "../../../utils/db";
@@ -7,9 +7,9 @@ import {createActivationToken} from "../../../utils/tokens";
 import {sendEmail} from "../../../utils/sendEmails";
 import activateEmailTemplate from "../../../components/emails/activateEmailTemplate";
 
-const handler = nc();
+const router = createRouter();
 
-handler.post(async (req, res) => {
+router.post(async (req, res) => {
     try {
         await db.connectDb();
         const {name, email, password} = req.body;
@@ -55,4 +55,4 @@ handler.post(async (req, res) => {
     }
 });
 
-export default handler;
+export default router.handler();

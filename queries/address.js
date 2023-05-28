@@ -8,7 +8,6 @@ export const saveAddress = async (address, userId) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
     return error.message;
   }
 };
@@ -26,9 +25,7 @@ export const changeActiveAddress = async (id) => {
 
 export const deleteAddress = async (id) => {
   try {
-    const { data } = await axios.delete("/api/address/deleteAddress", {
-      data: { id },
-    });
+    const { data } =  await axios.delete(`/api/address/deleteAddress/${id}`);
     return data;
   } catch (error) {
     return error.message;

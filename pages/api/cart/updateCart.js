@@ -1,8 +1,9 @@
 import {createRouter} from 'next-connect';
 import Product from "../../../models/Product";
 import db from "../../../utils/db";
+import auth from "../../../middleware/auth";
 
-const router = createRouter();
+const router = createRouter().use(auth);
 
 router.patch(async (req, res) => {
     try {

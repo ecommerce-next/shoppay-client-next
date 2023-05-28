@@ -31,7 +31,7 @@ const initialValues = {
 };
 export default function Shipping({user, addresses, setAddresses, profile}) {
     const [shipping, setShipping] = useState(initialValues);
-    const [visible, setVisible] = useState(user?.address.length ? false : true);
+    const [visible, setVisible] = useState(user?.address.length);
 
     const {
         firstName,
@@ -48,11 +48,11 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
     const validate = Yup.object({
         firstName: Yup.string()
             .required("First name is required.")
-            .min(3, "First name must be atleast 3 characters long.")
+            .min(3, "First name must be at least 3 characters long.")
             .max(20, "First name must be less than 20 characters long."),
         lastName: Yup.string()
             .required("Last name is required.")
-            .min(3, "Last name must be atleast 3 characters long.")
+            .min(3, "Last name must be at least 3 characters long.")
             .max(20, "Last name must be less than 20 characters long."),
         phoneNumber: Yup.string()
             //.phone()
@@ -87,8 +87,9 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
     };
 
     const saveShippingHandler = async () => {
-        const res = await saveAddress(shipping, user._id);
+        const res = await saveAddress(shipping);
         setAddresses(res.addresses);
+        window.location.reload();
     };
 
     const changeActiveHandler = async (id) => {
@@ -98,10 +99,14 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
 
     const deleteHandler = async (id) => {
         const res = await deleteAddress(id);
+        //console.log(res, "res====================")
         setAddresses(res.addresses);
+        window.location.reload();
     };
 
-    console.log(addresses, "addresses");
+    //console.log(shipping, "shipping");
+
+    //console.log(addresses, "addresses");
 
     return (
         <div className={styles.shipping}>

@@ -1,13 +1,13 @@
-import nc from "next-connect";
+import {createRouter} from 'next-connect';
 import db from "../../../utils/db";
 import User from "../../../models/User";
 import {createResetToken} from "../../../utils/tokens";
 import {sendEmail} from "../../../utils/sendEmails";
 import resetEmailTemplate from "../../../components/emails/resetEmailTemplate";
 
-const handler = nc();
+const router = createRouter()
 
-handler.post(async (req, res) => {
+router.post(async (req, res) => {
     try {
         await db.connectDb();
         const {email} = req.body;
@@ -37,4 +37,4 @@ handler.post(async (req, res) => {
     }
 });
 
-export default handler;
+export default router.handler()

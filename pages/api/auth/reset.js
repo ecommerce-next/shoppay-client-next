@@ -1,10 +1,10 @@
-import nc from "next-connect";
+import {createRouter} from 'next-connect';
 import bcrypt from "bcrypt";
 import db from "../../../utils/db";
 import User from "../../../models/User";
-const handler = nc();
+const router = createRouter();
 
-handler.put(async (req, res) => {
+router.put(async (req, res) => {
   try {
     await db.connectDb();
     const { user_id, password } = req.body;
@@ -24,4 +24,4 @@ handler.put(async (req, res) => {
   }
 });
 
-export default handler;
+export default router.handler();
