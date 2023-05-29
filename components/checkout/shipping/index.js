@@ -106,7 +106,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
 
     //console.log(shipping, "shipping");
 
-    //console.log(addresses, "addresses");
+    console.log(addresses, "addresses");
 
     return (
         <div className={styles.shipping}>
@@ -124,6 +124,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
                         >
                             <IoIosRemoveCircleOutline/>
                         </div>
+
                         <div
                             className={`${styles.address} ${address.active && styles.active}`}
                             onClick={() => changeActiveHandler(address._id)}
@@ -147,9 +148,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
                             </div>
                             <span
                                 className={styles.active__text}
-                                style={{
-                                    display: `${!address.active && "none"}`,
-                                }}
+                                style={{display: `${!address.active && "none"}`,}}
                             >Active</span>
                         </div>
                     </div>

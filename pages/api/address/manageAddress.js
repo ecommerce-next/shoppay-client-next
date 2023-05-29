@@ -13,7 +13,7 @@ router.put(async (req, res) => {
     let addresses = [];
     for (let i = 0; i < user_addresses.length; i++) {
       let temp_address = {};
-      if (user_addresses[i]._id == id) {
+      if (user_addresses[i]._id === id) {
         temp_address = { ...user_addresses[i].toObject(), active: true };
         addresses.push(temp_address);
       } else {
