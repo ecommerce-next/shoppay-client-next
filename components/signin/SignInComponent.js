@@ -7,13 +7,18 @@ import Link from "next/link";
 import SocialSignIn from "./SocialSignIn";
 import {BiLeftArrowAlt} from "react-icons/bi";
 import * as Yup from "yup";
-import {signIn} from "next-auth/react";
+import {signIn, useSession} from "next-auth/react";
 import Router from "next/router";
-// import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setUserR} from "../../store/userSlice";
 
 const SignInComponent = ({user, setUser, handleChange, providers, setLoading, callbackUrl, csrfToken}) => {
-    // const {user} = useSelector((state) => ({...state}));
-    //const dispatch = useDispatch()
+
+    const dispatch = useDispatch()
+    // const registeredUser = useSelector((state) => state.user.registeredUser);
+    // console.log(registeredUser, 'myUser');
+    const {data: session} = useSession();
+
 
     const {
         login_email,
@@ -30,19 +35,18 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
         };
 
         const res = await signIn("credentials", options);
-        //dispatch({...user,  success: "", error: ""});
+
         setUser({...user, success: "", error: ""});
         setLoading(false);
 
         if (res?.error) {
             setLoading(false);
-            //dispatch({...user,  login_error: res?.error });
             setUser({...user, login_error: res?.error});
         } else {
+            dispatch(setUserR(session.user));
             return Router.push(callbackUrl || "/");
         }
     };
-
 
     const loginValidation = Yup.object({
         login_email: Yup.string()
@@ -50,7 +54,6 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
             .email("Please enter a valid email address."),
         login_password: Yup.string().required("Please enter a password"),
     });
-
 
     return (
         <div className={styles.login__container}>
