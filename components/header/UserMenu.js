@@ -1,8 +1,17 @@
 import Link from "next/link";
 import styles from './style.module.scss';
 import { signOut, signIn } from "next-auth/react";
+import {useDispatch} from "react-redux";
+import {removeRegUser} from "../../store/userSlice";
 
 export default function UserMenu({ session }) {
+    const dispatch = useDispatch();
+
+    const signOutHandler = () => {
+        dispatch(removeRegUser());
+        signOut();
+    }
+
     return (
         <div className={styles.menu}>
             <h4>Welcome to Shoppay !</h4>
@@ -17,7 +26,7 @@ export default function UserMenu({ session }) {
                     <div className={styles.col}>
                         <span>Welcome Back,</span>
                         <h3>{session.user.name}</h3>
-                        <span onClick={() => signOut()}>Sign out</span>
+                        <span onClick={signOutHandler}>Sign out</span>
                     </div>
                 </div>
             ) : (

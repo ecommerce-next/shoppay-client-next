@@ -17,12 +17,15 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setUserR(state, action) {
+        setRegUser(state, action) {
             state.registeredUser = action.payload;
         },
+        removeRegUser(state) {
+            state.registeredUser = {};
+        }
     }
 });
 
-export const {setUserR} = userSlice.actions;
+export const {setRegUser, removeRegUser} = userSlice.actions;
 
 export default userSlice.reducer;

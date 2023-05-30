@@ -1,6 +1,5 @@
-import React from 'react';
 import styles from "../../styles/signin.module.scss";
-import {signIn} from "next-auth/react";
+import { signIn} from "next-auth/react";
 
 const SocialSignIn = ({providers}) => {
     return (

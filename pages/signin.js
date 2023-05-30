@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     getCsrfToken,
     getProviders,
@@ -10,6 +10,7 @@ import Footer from "../components/footer";
 import SignInComponent from "../components/signin/SignInComponent";
 import SignUpComponent from "../components/signin/SignUpComponent";
 import CircleLoaderSpinner from "../components/loaders/circleLoader ";
+
 
 const country = {
     name: "United State",
@@ -65,9 +66,7 @@ export default function SignIn({providers, callbackUrl, csrfToken}) {
 
 export async function getServerSideProps(context) {
     const {req, query} = context;
-
     const session = await getSession({req});
-    console.log(session, 'session')
     const {callbackUrl} = query;
 
     if (session) {

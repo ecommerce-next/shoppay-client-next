@@ -7,19 +7,10 @@ import Link from "next/link";
 import SocialSignIn from "./SocialSignIn";
 import {BiLeftArrowAlt} from "react-icons/bi";
 import * as Yup from "yup";
-import {signIn, useSession} from "next-auth/react";
+import {signIn} from "next-auth/react";
 import Router from "next/router";
-import {useDispatch, useSelector} from "react-redux";
-import {setUserR} from "../../store/userSlice";
 
 const SignInComponent = ({user, setUser, handleChange, providers, setLoading, callbackUrl, csrfToken}) => {
-
-    const dispatch = useDispatch()
-    // const registeredUser = useSelector((state) => state.user.registeredUser);
-    // console.log(registeredUser, 'myUser');
-    const {data: session} = useSession();
-
-
     const {
         login_email,
         login_password,
@@ -43,7 +34,6 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
             setLoading(false);
             setUser({...user, login_error: res?.error});
         } else {
-            dispatch(setUserR(session.user));
             return Router.push(callbackUrl || "/");
         }
     };

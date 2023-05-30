@@ -19,11 +19,21 @@ import {
 import ProductsSwiper from "../components/productsSwiper";
 import Product from "../models/Product";
 import ProductCard from "../components/productCard";
+import {useEffect} from "react";
+import {setRegUser} from "../store/userSlice";
+import {useDispatch} from "react-redux";
 
 export default function Home({country, products}) {
-    const {data: session} = useSession()
     const isMedium = useMediaQuery({query: "(max-width:850px)"});
     const isMobile = useMediaQuery({query: "(max-width:550px)"});
+
+    const {data: session} = useSession()
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(session, '===========@@@SESSION==========')
+        dispatch(setRegUser(session?.user));
+    }, [session])
 
     return (
         <>
