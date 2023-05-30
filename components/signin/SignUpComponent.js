@@ -6,11 +6,8 @@ import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
 import axios from "axios";
-// import {useDispatch, useSelector} from "react-redux";
 
 const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
-    // const {user} = useSelector((state) => ({...state}));
-    // const dispatch = useDispatch()
 
     const {
         name,
@@ -21,8 +18,7 @@ const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
         error,
     } = user;
 
-
-    const signUpHandler = async (e) => {
+    const signUpHandler = async () => {
         try {
             setLoading(true);
             const {data} = await axios.post("/api/auth/signup", {
@@ -30,8 +26,6 @@ const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
                 email,
                 password,
             });
-
-            // dispatch({...user,  error: "", success: data.message });
             setUser({...user, error: "", success: data.message});
             setLoading(false);
 
@@ -41,18 +35,15 @@ const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
                     email: email,
                     password: password,
                 };
-
-                const res = await signIn("credentials", options);
+                await signIn("credentials", options);
                 await Router.push("/");
             }, 2000);
 
         } catch (error) {
             setLoading(false);
-            //dispatch({...user,  success: "", error: error.response.data.message });
-            setUser({...user, success: "", error: error.response.data.message});
+            setUser({...user, success: "", error: error.message});
         }
     };
-
 
     const registerValidation = Yup.object({
         name: Yup.string()

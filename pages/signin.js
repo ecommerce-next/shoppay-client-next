@@ -3,7 +3,6 @@ import {
     getCsrfToken,
     getProviders,
     getSession,
-    // country,
 } from "next-auth/react";
 import styles from "../styles/signin.module.scss";
 import Header from "../components/header";
@@ -17,7 +16,7 @@ const country = {
     flag: "https://www.seekpng.com/png/full/3-34817_picture-download-american-flag-clipart-no-background-transparent.png",
 };
 
-const initialvalues = {
+const initialValues = {
     login_email: "",
     login_password: "",
     name: "",
@@ -30,17 +29,13 @@ const initialvalues = {
 };
 
 export default function SignIn({providers, callbackUrl, csrfToken}) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [user, setUser] = useState(initialvalues);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [user, setUser] = useState(initialValues);
     const [loading, setLoading] = useState(false);
-
 
     const handleChange = (e) => {
         const {name, value} = e.target;
         setUser({...user, [name]: value});
     };
-
 
     return (
         <>
@@ -67,7 +62,6 @@ export default function SignIn({providers, callbackUrl, csrfToken}) {
         </>
     );
 };
-
 
 export async function getServerSideProps(context) {
     const {req, query} = context;
