@@ -31,7 +31,6 @@ export default function Home({country, products}) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(session, '===========@@@SESSION==========')
         dispatch(setRegUser(session?.user));
     }, [session])
 

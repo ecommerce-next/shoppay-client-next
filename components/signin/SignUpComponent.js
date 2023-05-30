@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
 import axios from "axios";
+import SocialSignIn from "./SocialSignIn";
 
 const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
 
@@ -126,6 +127,7 @@ const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
                 </div>
                 <div>{error && <span className={styles.error}>{error}</span>}</div>
             </div>
+            {/*<SocialSignIn providers={providers}/>*/}
         </div>
     );
 };

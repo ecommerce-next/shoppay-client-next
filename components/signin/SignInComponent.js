@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import {Form, Formik} from "formik";
 import LoginInput from "../inputs/loginInput";
 import CircledIconBtn from "../buttons/circledIconBtn";
@@ -51,9 +50,7 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
                 <div className={styles.back__svg}>
                     <BiLeftArrowAlt/>
                 </div>
-                <span>
-                            We&apos;d be happy to join us! <Link href="/">Go Store</Link>
-                        </span>
+                <span>We&apos;d be happy to join us! <Link href="/">Go Store</Link></span>
             </div>
 
             <div className={styles.login__form}>

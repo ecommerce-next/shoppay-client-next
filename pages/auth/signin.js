@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     getCsrfToken,
     getProviders,
     getSession,
 } from "next-auth/react";
-import styles from "../styles/signin.module.scss";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import SignInComponent from "../components/signin/SignInComponent";
-import SignUpComponent from "../components/signin/SignUpComponent";
-import CircleLoaderSpinner from "../components/loaders/circleLoader ";
+import styles from "../../styles/signin.module.scss";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import SignInComponent from "../../components/signin/SignInComponent";
+import CircleLoaderSpinner from "../../components/loaders/circleLoader ";
 
 
 const country = {
@@ -33,6 +32,7 @@ export default function SignIn({providers, callbackUrl, csrfToken}) {
     const [user, setUser] = useState(initialValues);
     const [loading, setLoading] = useState(false);
 
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setUser({...user, [name]: value});
@@ -43,6 +43,8 @@ export default function SignIn({providers, callbackUrl, csrfToken}) {
             {loading && <CircleLoaderSpinner loading={loading}/>}
             <Header country={country}/>
             <div className={styles.login}>
+
+                REGISTER
                 <SignInComponent
                     user={user}
                     setUser={setUser}
@@ -51,12 +53,6 @@ export default function SignIn({providers, callbackUrl, csrfToken}) {
                     setLoading={setLoading}
                     callbackUrl={callbackUrl}
                     csrfToken={csrfToken}
-                />
-                <SignUpComponent
-                    user={user}
-                    setUser={setUser}
-                    handleChange={handleChange}
-                    setLoading={setLoading}
                 />
             </div>
             <Footer country={country}/>
@@ -69,10 +65,13 @@ export async function getServerSideProps(context) {
     const session = await getSession({req});
     const {callbackUrl} = query;
 
+    console.log(query, "query");
+    console.log(session, 'session');
+
     if (session) {
         return {
             redirect: {
-                destination: callbackUrl,
+                destination: callbackUrl || "/",
             },
         };
     };
@@ -83,7 +82,7 @@ export async function getServerSideProps(context) {
         props: {
             providers,
             csrfToken,
-            callbackUrl,
+            callbackUrl: callbackUrl || "/"
         },
     };
 }

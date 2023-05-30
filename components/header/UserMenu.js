@@ -1,15 +1,24 @@
 import Link from "next/link";
 import styles from './style.module.scss';
-import { signOut, signIn } from "next-auth/react";
+import {signOut, signIn} from "next-auth/react";
 import {useDispatch} from "react-redux";
 import {removeRegUser} from "../../store/userSlice";
+import Router from "next/router";
 
-export default function UserMenu({ session }) {
+export default function UserMenu({session}) {
     const dispatch = useDispatch();
 
     const signOutHandler = () => {
         dispatch(removeRegUser());
         signOut();
+    }
+
+    const registerHandler = () => {
+        return Router.push(`/auth/signup`);
+
+    }
+    const loginHandler = () => {
+        return Router.push(`/auth/signin`);
     }
 
     return (
@@ -31,10 +40,8 @@ export default function UserMenu({ session }) {
                 </div>
             ) : (
                 <div className={styles.flex}>
-                    <button className={styles.btn_primary}>Register</button>
-                    <button className={styles.btn_outlined} onClick={() => signIn()}>
-                        Login
-                    </button>
+                    <button className={styles.btn_primary} onClick={registerHandler}>Register</button>
+                    <button className={styles.btn_outlined} onClick={loginHandler}>Login</button>
                 </div>
             )}
 

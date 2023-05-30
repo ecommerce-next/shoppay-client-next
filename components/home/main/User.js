@@ -7,9 +7,17 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import {EffectCards, Navigation} from "swiper";
 import {userSwiperArray} from "../../../data/home";
+import Router from "next/router";
 
 export default function User() {
     const {data: session} = useSession();
+    const registerHandler = () => {
+        return Router.push(`/auth/signup`);
+
+    }
+    const loginHandler = () => {
+        return Router.push(`/auth/signin`);
+    }
 
     return (
         <div className={styles.user}>
@@ -31,8 +39,8 @@ export default function User() {
                             alt=""
                         />
                         <div className={styles.user__infos_btns}>
-                            <button>Register</button>
-                            <button>Login</button>
+                            <button onClick={registerHandler}>Register</button>
+                            <button onClick={loginHandler}>Login</button>
                         </div>
                     </div>
                 )}
