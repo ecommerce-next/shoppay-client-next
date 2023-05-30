@@ -14,7 +14,7 @@ export const saveAddress = async (address, userId) => {
 
 export const changeActiveAddress = async (id) => {
   try {
-    const { data } = await axios.put("/api/address/manageAddress", {
+    const { data } = await axios.put("/api/address/updateAddress", {
       id,
     });
     return data;
