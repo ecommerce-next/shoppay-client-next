@@ -1,4 +1,5 @@
 @import "../base";
+
 .payment {
   &__item {
     padding: 1rem;
@@ -8,13 +9,16 @@
     cursor: pointer;
     border-radius: 10px;
     margin-top: 1rem;
+
     &:hover {
       background: #f5f5f5;
     }
+
     img {
       width: 60px;
       height: 40px;
     }
+
     &_col {
       span {
         display: flex;
@@ -22,12 +26,14 @@
         justify-content: space-between;
         font-size: 14px;
       }
+
       p {
         color: #999;
         font-size: 12px;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+
         img {
           width: 35px;
           height: 25px;

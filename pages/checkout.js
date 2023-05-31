@@ -12,7 +12,7 @@ import Summary from "../components/checkout/summary";
 
 export default function Checkout({cart, user}) {
     const [addresses, setAddresses] = useState(user?.address || []);
-    const [paymentMethod, setPaymentMethod] = useState("");
+    const [paymentMethod, setPaymentMethod] = useState("credit_card");
     const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
     const [selectedAddress, setSelectedAddress] = useState("");
 

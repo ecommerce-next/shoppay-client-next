@@ -7,7 +7,7 @@ export default function Products({cart}) {
             <div className={styles.products__header}>
                 <h1>Cart</h1>
                 <span>
-          {cart.products.length == 1
+          {cart.products.length === 1
               ? "1 item"
               : `${cart.products.length} items`}
         </span>

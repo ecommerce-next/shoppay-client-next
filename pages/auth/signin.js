@@ -61,12 +61,16 @@ export default function SignIn({providers, callbackUrl, csrfToken}) {
 };
 
 export async function getServerSideProps(context) {
-    const {req, query} = context;
+    const {req, query, params, res, preview} = context;
     const session = await getSession({req});
     const {callbackUrl} = query;
 
-    console.log(query, "query");
     console.log(session, 'session');
+    console.log(query, "query");
+    console.log(params, "params");
+    // console.log(res, "res");
+    console.log(req.body, "req");
+    console.log(preview, "preview");
 
     if (session) {
         return {

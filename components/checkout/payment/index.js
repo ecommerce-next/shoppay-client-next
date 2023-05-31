@@ -9,9 +9,9 @@ export default function Payment({paymentMethod, setPaymentMethod, profile}) {
                     <h3>Payment Method</h3>
                 </div>
             )}
+
             {paymentMethods.map((pm) => (
                 <label
-                    htmlFor={pm.id}
                     key={pm.id}
                     className={styles.payment__item}
                     onClick={() => setPaymentMethod(pm.id)}
@@ -20,8 +20,7 @@ export default function Payment({paymentMethod, setPaymentMethod, profile}) {
                     <input
                         type="radio"
                         name="payment"
-                        id={pm.id}
-                        defaultChecked={paymentMethod === pm.id}
+                        defaultChecked={pm.id === "credit_card"}
                     />
                     <img src={`../../../images/checkout/${pm.id}.webp`} alt={pm.name}/>
                     <div className={styles.payment__item_col}>
