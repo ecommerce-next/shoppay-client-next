@@ -86,7 +86,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
         setShipping({...shipping, [name]: value});
     };
 
-    const saveShippingHandler = async () => {
+    const saveAddressHandler = async () => {
         const res = await saveAddress(shipping);
         setAddresses(res.addresses);
         window.location.reload();
@@ -176,7 +176,7 @@ export default function Shipping({user, addresses, setAddresses, profile}) {
                     }}
                     validationSchema={validate}
                     onSubmit={() => {
-                        saveShippingHandler();
+                        saveAddressHandler()
                     }}
                 >
                     {() => (

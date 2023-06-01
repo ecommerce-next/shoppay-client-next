@@ -16,7 +16,7 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
         login_error
     } = user;
 
-    const signInHandler = async (e) => {
+    const signInHandler = async () => {
         setLoading(true);
         let options = {
             redirect: false,

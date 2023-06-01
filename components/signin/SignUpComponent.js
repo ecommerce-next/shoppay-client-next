@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import {signIn} from "next-auth/react";
 import Router from "next/router";
 import axios from "axios";
-import SocialSignIn from "./SocialSignIn";
+//import SocialSignIn from "./SocialSignIn";
 
 const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
 
@@ -22,7 +22,7 @@ const SignUpComponent = ({user, setUser, handleChange, setLoading}) => {
     const signUpHandler = async () => {
         try {
             setLoading(true);
-            const {data} = await axios.post("/api/auth/signup", {
+            const {data} = await axios.post("/api/auth/register", {
                 name,
                 email,
                 password,

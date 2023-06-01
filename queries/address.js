@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const saveAddress = async (address, userId) => {
   try {
-    const { data } = await axios.post("/api/address/saveAddress", {
+    const { data } = await axios.post("/api/address/createAddress", {
       address,
       userId,
     });
