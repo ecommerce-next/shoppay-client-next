@@ -23,7 +23,7 @@ const initialValues = {
     login_error: "",
 };
 
-export default function SignIn() {
+export default function Register() {
     const [user, setUser] = useState(initialValues);
     const [loading, setLoading] = useState(false);
 

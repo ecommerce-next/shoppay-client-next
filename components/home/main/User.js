@@ -12,11 +12,11 @@ import Router from "next/router";
 export default function User() {
     const {data: session} = useSession();
     const registerHandler = () => {
-        return Router.push(`/auth/signup`);
+        return Router.push('/auth/register');
 
     }
     const loginHandler = () => {
-        return Router.push(`/auth/signin`);
+        return Router.push('/auth/login');
     }
 
     return (

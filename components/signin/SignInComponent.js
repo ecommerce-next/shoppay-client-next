@@ -100,6 +100,10 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
                             <div className={styles.forgot}>
                                 <Link href="/auth/forgot">Forgot password ?</Link>
                             </div>
+
+                            <div className={styles.login__link}>
+                                <Link href="/auth/register">Register instead? </Link>
+                            </div>
                         </Form>
                     )}
                 </Formik>
