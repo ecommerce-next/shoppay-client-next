@@ -20,7 +20,7 @@ export default function Summary({
     const [error, setError] = useState("");
     const [order_error, setOrder_Error] = useState("");
     const validateCoupon = Yup.object({
-        coupon: Yup.string().required("Pleace enter a coupon first !"),
+        coupon: Yup.string().required("Please enter a coupon first!"),
     });
     const applyCouponHandler = async () => {
         const res = await applyCoupon(coupon);
@@ -49,11 +49,12 @@ export default function Summary({
                 totalBeforeDiscount: cart.cartTotal,
                 couponApplied: coupon,
             });
-            Router.push(`/order/${data.order_id}`);
+            await Router.push(`/order/${data.order_id}`);
         } catch (error) {
             setOrder_Error(error.response.data.message);
         }
     };
+
     return (
         <div className={styles.summary}>
             <div className={styles.header}>
