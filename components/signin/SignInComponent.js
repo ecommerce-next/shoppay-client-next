@@ -47,9 +47,12 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
     return (
         <div className={styles.login__container}>
             <div className={styles.login__header}>
-                <div className={styles.back__svg}>
-                    <BiLeftArrowAlt/>
-                </div>
+                <Link href="/">
+                    <div className={styles.back__svg}>
+                        <BiLeftArrowAlt/>
+                    </div>
+                </Link>
+
                 <span>We&apos;d be happy to join us! <Link href="/">Go Store</Link></span>
             </div>
 
@@ -98,10 +101,7 @@ const SignInComponent = ({user, setUser, handleChange, providers, setLoading, ca
                             )}
 
                             <div className={styles.forgot}>
-                                <Link href="/auth/forgot">Forgot password ?</Link>
-                            </div>
-
-                            <div className={styles.login__link}>
+                                <Link href="/auth/forgot">Forgot password?</Link>
                                 <Link href="/auth/register">Register instead? </Link>
                             </div>
                         </Form>

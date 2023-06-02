@@ -22,8 +22,6 @@
 
   &__link {
     margin-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
 
     a {
       color: #666;
@@ -98,10 +96,11 @@
       color: #666;
       padding-top: 1rem;
       font-size: 14px;
-      width: fit-content;
       height: 40px;
+      display: flex;
+      justify-content: space-between;
 
-      &:hover {
+      a:hover {
         color: $blue-color;
         border-bottom: 1px solid $blue-color;
       }
