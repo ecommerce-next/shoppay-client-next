@@ -16,7 +16,7 @@ export default function Checkout({cart, user}) {
     const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
     const [selectedAddress, setSelectedAddress] = useState("");
 
-    console.log(addresses, '==========addresses==========')
+    //console.log(addresses, '==========addresses==========')
 
     useEffect(() => {
         let check = addresses?.find((ad) => ad.active === true);
@@ -27,7 +27,7 @@ export default function Checkout({cart, user}) {
         }
     }, [addresses]);
 
-    console.log(selectedAddress, '==========selectedAddress=========='  )
+    //console.log(selectedAddress, '==========selectedAddress=========='  )
     return (
         <>
             <Header/>

@@ -19,9 +19,11 @@ export default function Summary({
     const [discount, setDiscount] = useState("");
     const [error, setError] = useState("");
     const [order_error, setOrder_Error] = useState("");
-    const validateCoupon = Yup.object({
-        coupon: Yup.string().required("Please enter a coupon first!"),
-    });
+
+    // const validateCoupon = Yup.object({
+    //     coupon: Yup.string().required("Please enter a coupon first!"),
+    // });
+
     const applyCouponHandler = async () => {
         const res = await applyCoupon(coupon);
         if (res.message) {
@@ -64,10 +66,8 @@ export default function Summary({
                 <Formik
                     enableReinitialize
                     initialValues={{coupon}}
-                    validationSchema={validateCoupon}
-                    onSubmit={() => {
-                        applyCouponHandler();
-                    }}
+                    // validationSchema={validateCoupon}
+                    onSubmit={() => applyCouponHandler()}
                 >
                     {(formik) => (
                         <Form>
@@ -77,32 +77,24 @@ export default function Summary({
                                 onChange={(e) => setCoupon(e.target.value)}
                             />
                             {error && <span className={styles.error}>{error}</span>}
-                            <button className={styles.apply_btn} type="submit">
-                                Apply
-                            </button>
+                            <button className={styles.apply_btn} type="submit">Apply</button>
+
                             <div className={styles.infos}>
-                <span>
-                  Total : <b>{cart.cartTotal}$</b>{" "}
-                </span>
-                                {discount > 0 && (
-                                    <span className={styles.coupon_span}>
-                    Coupon applied : <b>-{discount}%</b>
-                  </span>
-                                )}
-                                {totalAfterDiscount < cart.cartTotal &&
-                                    totalAfterDiscount != "" && (
-                                        <span>
-                      New price : <b>{totalAfterDiscount}$</b>
-                    </span>
-                                    )}
+                                <span>Total : <b>{cart.cartTotal}$</b>{" "}</span>
+                                {discount > 0 && (<span className={styles.coupon_span}>
+                                        Coupon applied : <b>-{discount}%</b>
+                                </span>)}
+
+                                {totalAfterDiscount < cart.cartTotal && totalAfterDiscount != "" && (<span>
+                                        New price : <b>{totalAfterDiscount}$</b>
+                                    </span>)}
                             </div>
                         </Form>
                     )}
                 </Formik>
             </div>
-            <button className={styles.submit_btn} onClick={() => placeOrderHandler()}>
-                Place Order
-            </button>
+
+            <button className={styles.submit_btn} onClick={() => placeOrderHandler()}>Place Order</button>
             {order_error && <span className={styles.error}>{order_error}</span>}
         </div>
     );
