@@ -1,8 +1,8 @@
 import {createRouter} from 'next-connect';
-import User from "../../../models/User";
+//import User from "../../../models/User";
 import Coupon from "../../../models/Coupon";
 import db from "../../../utils/db";
-import auth from "../../../middleware/auth";
+//import auth from "../../../middleware/auth";
 //const router = createRouter().use(auth);
 //for testing mode without auth, then turn back to above line
 const router = createRouter();
