@@ -1,7 +1,8 @@
 import React, {useEffect, useReducer} from 'react';
 import styles from "../../styles/order.module.scss";
-import { PayPalButtons, usePayPalScriptReducer} from "@paypal/react-paypal-js";
+import {PayPalButtons, usePayPalScriptReducer} from "@paypal/react-paypal-js";
 import axios from "axios";
+import StripePayment from "../stripePayment";
 
 function reducer(state, action) {
     switch (action.type) {
@@ -117,7 +118,7 @@ const OrderActions = ({orderData, paypal_client_id, stripe_public_key,}) => {
 
             {!orderData.isPaid && (
                 <div className={styles.order__payment}>
-                    {/*{orderData.paymentMethod == "paypal" && (*/}
+                    {orderData.paymentMethod == "paypal" && (
                         <div>
                             {isPending ? (
                                 <span>loading...</span>
@@ -129,17 +130,14 @@ const OrderActions = ({orderData, paypal_client_id, stripe_public_key,}) => {
                                 ></PayPalButtons>
                             )}
                         </div>
-                    {/*)}*/}
-                    {/*{orderData.paymentMethod == "credit_card" && (*/}
-                    {/*    <StripePayment*/}
-                    {/*        total={orderData.total}*/}
-                    {/*        order_id={orderData._id}*/}
-                    {/*        stripe_public_key={stripe_public_key}*/}
-                    {/*    />*/}
-                    {/*)}*/}
-                    {/*{orderData.paymentMethod == "cash" && (*/}
-                    {/*    <div className={styles.cash}>cash</div>*/}
-                    {/*)}*/}
+                    )}
+                    {orderData.paymentMethod == "credit_card" && (
+                        <StripePayment
+                            total={orderData.total}
+                            order_id={orderData._id}
+                            stripe_public_key={stripe_public_key}
+                        />
+                    )}
                 </div>
             )}
         </div>
