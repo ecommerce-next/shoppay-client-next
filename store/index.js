@@ -6,11 +6,13 @@ import {persistReducer} from "redux-persist";
 import cartReducer from './cartSlice'
 import user from "./userSlice";
 import dialog from "./DialogSlice";
+import expandSidebar from "./ExpandSlice";
 
 const reducers = combineReducers({
     cart: cartReducer,
     user,
     dialog,
+    expandSidebar
 });
 
 const config = {
