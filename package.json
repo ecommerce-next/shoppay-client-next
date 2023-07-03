@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -23,9 +23,11 @@
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
+    "cloudinary": "^1.37.3",
     "connect": "^3.7.0",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
+    "express-fileupload": "^1.4.0",
     "formik": "^2.2.9",
     "googleapis": "^118.0.0",
     "jsonwebtoken": "^9.0.0",
@@ -62,6 +64,8 @@
     "node": "16.x"
   },
   "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.41.0",
     "eslint-config-next": "^13.4.3",
     "eslint-plugin-react-hooks": "^4.6.0"
