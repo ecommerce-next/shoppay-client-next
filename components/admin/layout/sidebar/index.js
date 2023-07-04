@@ -1,7 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import styles from "./styles.module.scss";
 import {toggleSidebar} from "../../../../store/ExpandSlice";
-//-----------------------
+import {useSession} from "next-auth/react";
+import Link from "next/link";
+import {useRouter} from "next/router";
 import {
     MdArrowForwardIos,
     MdOutlineCategory,
@@ -18,10 +20,6 @@ import {
     RiLogoutCircleFill,
     RiSettingsLine,
 } from "react-icons/ri";
-//-----------------------
-import {useSession} from "next-auth/react";
-import Link from "next/link";
-import {useRouter} from "next/router";
 
 export default function Sidebar() {
     const router = useRouter();

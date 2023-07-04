@@ -22,7 +22,7 @@ export default function Notifications({}) {
       >
         <div className={styles.dropdown__content_notifications}>
           {notificationsData.map((n, i) => (
-            <>
+            <div key={n.date}>
               {n.type == "order" ? (
                 <div
                   className={
@@ -47,7 +47,7 @@ export default function Notifications({}) {
                   <span>{n.user}</span> new Account created.
                 </div>
               )}
-            </>
+            </div>
           ))}
         </div>
         <div className={styles.dropdown__content_footer}>
