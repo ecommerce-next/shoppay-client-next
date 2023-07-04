@@ -16,7 +16,7 @@ export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
       <DialogModal />
-      {/*<Sidebar />*/}
+      <Sidebar />
         LAYOUT
       <div
         style={{ marginLeft: `${showSidebar ? "280px" : "80px"}` }}
