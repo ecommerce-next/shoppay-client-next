@@ -43,6 +43,7 @@ export const sidebarIconsMain = [
 
 export const sidebarDropdown = {
     product: {
+        id: uuidv4(),
         title: "Product",
         list: [
             {
@@ -63,6 +64,7 @@ export const sidebarDropdown = {
     },
 
     category: {
+        id: uuidv4(),
         title: "Categories / Subs",
         list: [
             {
@@ -82,6 +84,7 @@ export const sidebarDropdown = {
         ]
     },
     coupon: {
+        id: uuidv4(),
         title: "Coupons",
         list: [
             {

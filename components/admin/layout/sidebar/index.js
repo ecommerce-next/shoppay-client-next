@@ -45,52 +45,24 @@ export default function Sidebar() {
                 </ul>
 
                 <div className={styles.sidebar__dropdown}>
-                    <div className={styles.sidebar__dropdown_heading}>
-                        <div className={styles.show}>{sidebarDropdown.product.title}</div>
-                    </div>
-                    <ul className={styles.sidebar__list}>
-                        {sidebarDropdown.product.list.map((item) => (
-                            <li key={item.id} className={route === `${item.route}` ? styles.active : ""}>
-                                <Link href={item.link}>
-                                    {item.icon}
-                                    <span className={styles.show}>{item.data}</span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                    {Object.keys(sidebarDropdown).map((el) => (
+                        <div key={sidebarDropdown[el].id}>
+                            <div className={styles.sidebar__dropdown_heading}>
+                                <div className={styles.show}>{sidebarDropdown[el].title}</div>
+                            </div>
 
-                <div className={styles.sidebar__dropdown}>
-                    <div className={styles.sidebar__dropdown_heading}>
-                        <div className={styles.show}>{sidebarDropdown.category.title}</div>
-                    </div>
-
-                    <ul className={styles.sidebar__list}>
-                        {sidebarDropdown.category.list.map((item) => (
-                            <li key={item.id} className={route === `${item.route}` ? styles.active : ""}>
-                                <Link href={item.link}>
-                                    {item.icon}
-                                    <span className={styles.show}>{item.data}</span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div className={styles.sidebar__dropdown}>
-                    <div className={styles.sidebar__dropdown_heading}>
-                        <div className={styles.show}>{sidebarDropdown.coupon.title}</div>
-                    </div>
-                    <ul className={styles.sidebar__list}>
-                        {sidebarDropdown.coupon.list.map((item) => (
-                            <li key={item.id} className={route === `${item.route}` ? styles.active : ""}>
-                                <Link href={item.link}>
-                                    {item.icon}
-                                    <span className={styles.show}>{item.data}</span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                            <ul className={styles.sidebar__list}>
+                                {sidebarDropdown[el].list.map((item) => (
+                                    <li key={item.id} className={route === `${item.route}` ? styles.active : ""}>
+                                        <Link href={item.link}>
+                                            {item.icon}
+                                            <span className={styles.show}>{item.data}</span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
 
                 <nav>
