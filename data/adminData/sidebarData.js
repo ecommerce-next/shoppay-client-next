@@ -13,30 +13,35 @@ export const sidebarIconsMain = [
         id: uuidv4(),
         link: "/admin/dashboard",
         icon: <MdSpaceDashboard/>,
+        route: '/admin/dashboard',
         data: "Dashboard"
     },
     {
         id: uuidv4(),
         link: "/admin/dashboard/sales",
         icon: <FcSalesPerformance/>,
+        route: '/admin/dashboard/sales',
         data: "Sales"
     },
     {
         id: uuidv4(),
         link: "/admin/dashboard/orders",
         icon: <IoListCircleSharp/>,
+        route: '/admin/dashboard/orders',
         data: "Orders"
     },
     {
         id: uuidv4(),
         link: "/admin/dashboard/users",
         icon: <ImUsers/>,
+        route: '/admin/dashboard/users',
         data: "Users"
     },
     {
         id: uuidv4(),
         link: "/admin/dashboard/messages",
         icon: <AiFillMessage/>,
+        route: '/admin/dashboard/messages',
         data: "Messages"
     }
 ];
@@ -49,14 +54,14 @@ export const sidebarDropdown = {
             {
                 id: uuidv4(),
                 link: "/admin/dashboard/product/all",
-                route: "product/all",
+                route: "/admin/dashboard/product/all",
                 icon: <FaThList/>,
                 data: "All Products"
             },
             {
                 id: uuidv4(),
                 link: "/admin/dashboard/product/create",
-                route: "product/create",
+                route: "/admin/dashboard/product/create",
                 icon: <BsPatchPlus/>,
                 data: "Create Product"
             }
@@ -70,14 +75,14 @@ export const sidebarDropdown = {
             {
                 id: uuidv4(),
                 link: "/admin/dashboard/categories",
-                route: "categories",
+                route: "/admin/dashboard/categories",
                 icon: <MdOutlineCategory/>,
                 data: "Categories"
             },
             {
                 id: uuidv4(),
                 link: "/admin/dashboard/subCategories",
-                route: "subCategories",
+                route: "/admin/dashboard/subCategories",
                 icon: <MdOutlineCategory/>,
                 data: "Sub Categories"
             }
@@ -90,7 +95,7 @@ export const sidebarDropdown = {
             {
                 id: uuidv4(),
                 link: "/admin/dashboard/coupon",
-                route: "coupon",
+                route: "/admin/dashboard/coupon",
                 icon: <RiCoupon3Fill/>,
                 data: "Coupons"
             }

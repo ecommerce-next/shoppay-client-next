@@ -10,10 +10,8 @@ export default function Categories({ categories }) {
 
   return (
     <Layout>
-      <div>
         <Create setCategories={setData} />
         <List categories={data} setCategories={setData} />
-      </div>
     </Layout>
   );
 }

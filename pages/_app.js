@@ -7,6 +7,7 @@ import {persistStore} from "redux-persist";
 import Head from "next/head";
 import {PayPalScriptProvider} from "@paypal/react-paypal-js";
 import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let persistor = persistStore(store);
 

@@ -12,20 +12,18 @@ export default function SubCategories({ categories, subCategories }) {
 
   return (
     <Layout>
-      <div>
         <Create setSubCategories={setData} categories={categories} />
         <List
           categories={categories}
           subCategories={data}
           setSubCategories={setData}
         />
-      </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps(context) {
-  db.connectDb();
+  await db.connectDb();
   const categories = await Category.find({}).sort({ updatedAt: -1 }).lean();
   const subCategories = await SubCategory.find({})
     .populate({ path: "parent", model: Category })

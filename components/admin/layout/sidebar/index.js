@@ -5,11 +5,11 @@ import {useSession} from "next-auth/react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {MdArrowForwardIos} from "react-icons/md";
-import {sidebarIconsMain, sidebarDropdown, sidebarIconsBottom} from "../../../../data/sidebarData";
+import {sidebarIconsMain, sidebarDropdown, sidebarIconsBottom} from "../../../../data/adminData/sidebarData";
 
 export default function Sidebar() {
     const router = useRouter();
-    const route = router.pathname.split("/admin/dashboard/")[1];
+    const route = router.pathname;
     const {data: session} = useSession();
     const {expandSidebar} = useSelector((state) => ({...state}));
     const expand = expandSidebar.expandSidebar;
@@ -25,6 +25,8 @@ export default function Sidebar() {
             </div>
 
             <div className={styles.sidebar__container}>
+                <div className={styles.sidebar__header}><span/> <span/> <span/></div>
+
                 <div className={styles.sidebar__user}>
                     <img src={session?.user?.image} alt=""/>
                     <div className={styles.show}>
@@ -35,7 +37,7 @@ export default function Sidebar() {
 
                 <ul className={styles.sidebar__list}>
                     {sidebarIconsMain.map((item) => (
-                        <li key={item.id}>
+                        <li key={item.id} className={route == `${item.route}` ? styles.active : ""}>
                             <Link href={item.link}>
                                 {item.icon}
                                 <span className={styles.show}>{item.data}</span>

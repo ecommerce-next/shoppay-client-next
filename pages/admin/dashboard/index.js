@@ -12,6 +12,7 @@ import {SlHandbag, SlEye} from "react-icons/sl";
 import {SiProducthunt} from "react-icons/si";
 import {GiTakeMyMoney} from "react-icons/gi";
 import Link from "next/link";
+import {toast} from "react-toastify";
 
 export default function Dashboard({users, orders, products}) {
     const {data: session} = useSession();
@@ -33,6 +34,7 @@ export default function Dashboard({users, orders, products}) {
                         <Notifications/>
                     </div>
                 </div>
+
                 <div className={styles.cards}>
                     <div className={styles.card}>
                         <div className={styles.card__icon}>
@@ -78,6 +80,7 @@ export default function Dashboard({users, orders, products}) {
                         </div>
                     </div>
                 </div>
+
                 <div className={styles.data}>
                     <div className={styles.orders}>
                         <div className={styles.heading}>
