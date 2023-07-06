@@ -16,6 +16,7 @@ const subSchema = new mongoose.Schema({
     index: true,
   },
   parent: {
+    // type: ObjectId,
     type: ObjectId,
     ref: "Category",
     required: true,

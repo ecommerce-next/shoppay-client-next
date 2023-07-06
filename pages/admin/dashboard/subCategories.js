@@ -8,6 +8,7 @@ import List from "../../../components/admin/subCategories/List";
 
 export default function SubCategories({ categories, subCategories }) {
   const [data, setData] = useState(subCategories);
+
   console.log(data);
 
   return (
@@ -29,6 +30,7 @@ export async function getServerSideProps(context) {
     .populate({ path: "parent", model: Category })
     .sort({ updatedAt: -1 })
     .lean();
+
   return {
     props: {
       categories: JSON.parse(JSON.stringify(categories)),

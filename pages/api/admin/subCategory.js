@@ -1,10 +1,10 @@
 import nc, {createRouter} from "next-connect";
 import auth from "../../../middleware/auth";
 import admin from "../../../middleware/admin";
-import Category from "../../../models/Category";
 import SubCategory from "../../../models/SubCategory";
 import db from "../../../utils/db";
 import slugify from "slugify";
+
 const router = createRouter().use(auth).use(admin);
 
 router.post(async (req, res) => {
@@ -35,7 +35,7 @@ router.delete(async (req, res) => {
     const { id } = req.body;
     await db.connectDb();
     await SubCategory.findByIdAndRemove(id);
-    db.disconnectDb();
+    await db.disconnectDb();
     return res.json({
       message: "SubCategory has been deleted successfuly",
       subCategories: await SubCategory.find({}).sort({ updatedAt: -1 }),

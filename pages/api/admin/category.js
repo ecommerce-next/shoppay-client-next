@@ -44,6 +44,7 @@ router.delete(async (req, res) => {
         res.status(500).json({message: error.message});
     }
 });
+
 router.put(async (req, res) => {
     try {
         const {id, name} = req.body;
