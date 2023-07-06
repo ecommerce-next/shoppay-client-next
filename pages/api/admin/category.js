@@ -15,7 +15,7 @@ router.post(async (req, res) => {
         if (test) {
             return res
                 .status(400)
-                .json({message: "Category already exist, Try a different name"});
+                .json({message: "Category already exist. Try a different name"});
         }
         await new Category({name, slug: slugify(name)}).save();
 
