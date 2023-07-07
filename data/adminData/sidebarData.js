@@ -94,8 +94,8 @@ export const sidebarDropdown = {
         list: [
             {
                 id: uuidv4(),
-                link: "/admin/dashboard/coupon",
-                route: "/admin/dashboard/coupon",
+                link: "/admin/dashboard/coupons",
+                route: "/admin/dashboard/coupons",
                 icon: <RiCoupon3Fill/>,
                 data: "Coupons"
             }

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import {toggleSidebar} from "../../../../store/ExpandSlice";
 import {useSession} from "next-auth/react";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 import {MdArrowForwardIos} from "react-icons/md";
 import {sidebarIconsMain, sidebarDropdown, sidebarIconsBottom} from "../../../../data/adminData/sidebarData";
 
@@ -28,11 +28,24 @@ export default function Sidebar() {
                 <div className={styles.sidebar__header}><span/> <span/> <span/></div>
 
                 <div className={styles.sidebar__user}>
-                    <img src={session?.user?.image} alt=""/>
-                    <div className={styles.show}>
-                        <span>Welcome back 👋</span>
-                        <span>{session?.user?.name}</span>
-                    </div>
+                    {session ?
+                        <>
+                            <img src={session?.user?.image} alt={session?.user?.name}/>
+                            <div className={styles.show}>
+                                <span>Welcome back 👋</span>
+                                <span>{session?.user?.name}</span>
+                            </div>
+                        </> : <>
+                            <div className={styles.show}>
+                                <img
+                                    src="https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642478/992490_b0iqzq.png"
+                                    alt=""
+                                />
+                                <button onClick={() => Router.push('/auth/login')}>Login</button>
+                                <span>Please login</span>
+                            </div>
+                        </>
+                    }
                 </div>
 
                 <ul className={styles.sidebar__list}>
