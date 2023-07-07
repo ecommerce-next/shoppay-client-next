@@ -4,6 +4,7 @@ import db from "../../../../utils/db";
 import Product from "../../../../models/Product";
 import Category from "../../../../models/Category";
 import ProductCard from "../../../../components/admin/products/productCard";
+import subCategory from "../../../../models/SubCategory";
 
 export default function all({products}) {
     console.log(products);
@@ -21,6 +22,7 @@ export async function getServerSideProps(ctx) {
     await db.connectDb();
     const products = await Product.find({})
         .populate({path: "category", model: Category})
+        .populate({path: "subCategories", model: subCategory})
         .sort({createdAt: -1})
         .lean();
     await db.disconnectDb();
