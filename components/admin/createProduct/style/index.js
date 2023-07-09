@@ -1,22 +1,14 @@
 import {ErrorMessage, useField} from "formik";
 import {useRef} from "react";
-import {FaStaylinked} from "react-icons/fa";
-import {RiDeleteBin7Fill, RiShape2Line} from "react-icons/ri";
 import {useDispatch} from "react-redux";
 import {showDialog} from "../../../../store/DialogSlice";
 import styles from "./styles.module.scss";
-import {GiExtractionOrb} from "react-icons/gi";
 
-export default function Style({
-                                  product,
-                                  setProduct,
-                                  name,
-                                  colorImage,
-                                  ...props
-                              }) {
+export default function Style({product, setProduct, name, colorImage, ...props}) {
     const dispatch = useDispatch();
     const fileInput = useRef(null);
     const [meta, field] = useField(props);
+
     const handleImage = (e) => {
         let img = e.target.files[0];
         if (
@@ -26,10 +18,10 @@ export default function Style({
         ) {
             dispatch(
                 showDialog({
-                    header: "Unsopported Format.",
+                    header: "Unsupported Format.",
                     msgs: [
                         {
-                            msg: `${img.name} format is unsupported ! only JPEG,PNG,WEBP are allowed.`,
+                            msg: `${img.name} format is unsupported! Only JPEG,PNG,WEBP are allowed.`,
                             type: "error",
                         },
                     ],
@@ -39,7 +31,7 @@ export default function Style({
         } else if (img.size > 1024 * 1024 * 10) {
             dispatch(
                 showDialog({
-                    header: "Unsopported Format.",
+                    header: "Unsupported Format.",
                     msgs: [
                         {
                             msg: `${img.name} size is too large, maximum of 10mb allowed.`,
@@ -90,7 +82,7 @@ export default function Style({
                 hidden
                 accept="image/jpeg,image/png,image/webp"
                 onChange={handleImage}
-            />
+            />r
 
             <button
                 type="reset"

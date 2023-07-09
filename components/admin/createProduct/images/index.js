@@ -26,7 +26,7 @@ export default function Images({
             if (images.length == 6) {
                 dispatch(
                     showDialog({
-                        header: "Maximu 6 images are allowed.",
+                        header: "Maximum 6 images are allowed.",
                         msgs: [
                             {
                                 msg: `Maximum of total six images are allowed.`,
@@ -58,7 +58,7 @@ export default function Images({
             } else if (img.size > 1024 * 1024 * 10) {
                 dispatch(
                     showDialog({
-                        header: "Unsopported Format.",
+                        header: "Unsupported Format.",
                         msgs: [
                             {
                                 msg: `${img.name} size is too large, maximum of 10mb allowed.`,
@@ -84,9 +84,7 @@ export default function Images({
 
     return (
         <div className={styles.images}>
-            <div
-                className={`${styles.header} ${meta.error ? styles.header__error : ""}`}
-            >
+            <div className={`${styles.header} ${meta.error ? styles.header__error : ""}`}>
                 <div className={styles.flex}>
                     {meta.error && <img src="../../../images/warning.png" alt=""/>}
                     {header}
@@ -100,6 +98,7 @@ export default function Images({
           )}
         </span>
             </div>
+
             <input
                 type="file"
                 name={name}
@@ -109,18 +108,19 @@ export default function Images({
                 accept="image/jpeg,image/png,image/webp"
                 onChange={handleImages}
             />
+
             <div className={styles.images__main}>
                 <div
                     className={`${styles.images__main_grid} ${
-                        images.length == 2
+                        images.length === 2
                             ? styles.grid__two
-                            : images.length == 3
+                            : images.length === 3
                                 ? styles.grid__three
-                                : images.length == 4
+                                : images.length === 4
                                     ? styles.grid__foor
-                                    : images.length == 5
+                                    : images.length === 5
                                         ? styles.grid__five
-                                        : images.length == 6
+                                        : images.length === 6
                                             ? styles.grid__six
                                             : ""
                     }`}
@@ -129,25 +129,20 @@ export default function Images({
                         <img src="../../../images/no_image.png" alt=""/>
                     ) : (
                         images.map((img, i) => (
-                            <div className={styles.images__main_grid_wrap} key={i}>
+                            <div className={styles.images__main_grid_wrap} key={img}>
                                 <div className={styles.blur}></div>
                                 <img src={img} alt=""/>
                                 <div className={styles.images__main_grid_actions}>
-                                    <button onClick={() => handleRemove(img)}>
-                                        <RiDeleteBin7Fill/>
-                                    </button>
-                                    <button onClick={() => setColorImage(img)}>
-                                        <GiExtractionOrb/>
-                                    </button>
-                                    <button>
-                                        <RiShape2Line/>
-                                    </button>
+                                    <button onClick={() => handleRemove(img)}><RiDeleteBin7Fill/></button>
+                                    <button onClick={() => setColorImage(img)}><GiExtractionOrb/></button>
+                                    <button><RiShape2Line/></button>
                                 </div>
                             </div>
                         ))
                     )}
                 </div>
             </div>
+
             <button
                 type="reset"
                 disabled={images.length == 6}

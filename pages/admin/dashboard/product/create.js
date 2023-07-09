@@ -11,7 +11,6 @@ import {Form, Formik} from "formik";
 import SingularSelect from "../../../../components/selects/SingularSelect";
 import MultipleSelect from "../../../../components/selects/MultipleSelect";
 import AdminInput from "../../../../components/inputs/adminInput";
-import DialogModal from "../../../../components/dialogModal";
 import {useDispatch} from "react-redux";
 import {showDialog} from "../../../../store/DialogSlice";
 import Images from "../../../../components/admin/createProduct/images";
@@ -22,7 +21,8 @@ import Details from "../../../../components/admin/createProduct/clickToAdd/Detai
 import Questions from "../../../../components/admin/createProduct/clickToAdd/Questions";
 import {validateCreateProduct} from "../../../../utils/validation";
 import dataURItoBlob from "../../../../utils/dataURItoBlob";
-import {uploadImages} from "../../../../requests/upload";
+import {uploadImages} from "../../../../queries/upload";
+import DialogModal from "../../../../components/dialogModal";
 
 const initialState = {
     name: "",
@@ -69,13 +69,10 @@ export default function Create({parents, categories}) {
     const [description_images, setDescription_images] = useState("");
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
-    console.log(product);
 
     useEffect(() => {
         const getParentData = async () => {
             const {data} = await axios.get(`/api/product/${product.parent}`);
-            console.log(data);
-
             if (data) {
                 setProduct({
                     ...product,
@@ -88,8 +85,11 @@ export default function Create({parents, categories}) {
                     details: [],
                 });
             }
-        };
-        getParentData();
+        }
+
+        getParentData().then(r => {
+            return r;
+        }).catch(e => console.log(e));
     }, [product.parent]);
 
     useEffect(() => {
@@ -99,10 +99,8 @@ export default function Create({parents, categories}) {
                     category: product.category,
                 },
             });
-            console.log(data);
             setSubs(data);
         }
-
         getSubs();
     }, [product.category]);
 
@@ -114,20 +112,16 @@ export default function Create({parents, categories}) {
     const validate = Yup.object({
         name: Yup.string()
             .required("Please add a name")
-            .min(10, "Product name must bewteen 10 and 300 characters.")
-            .max(300, "Product name must bewteen 10 and 300 characters."),
+            .min(10, "Product name must between 10 and 300 characters.")
+            .max(300, "Product name must between 10 and 300 characters."),
         brand: Yup.string().required("Please add a brand"),
         category: Yup.string().required("Please select a category."),
-        /*
-        subCategories: Yup.array().min(
-          1,
-          "Please select atleast one sub Category."
-        ),
-       */
         sku: Yup.string().required("Please add a sku/number"),
         color: Yup.string().required("Please add a color"),
         description: Yup.string().required("Please add a description"),
+        //subCategories: Yup.array().min(1, "Please select at least one sub Category."),
     });
+
     const createProduct = async () => {
         let test = validateCreateProduct(product, images);
         if (test == "valid") {
@@ -205,9 +199,7 @@ export default function Create({parents, categories}) {
                     styleInout: "",
                 }}
                 validationSchema={validate}
-                onSubmit={() => {
-                    createProduct();
-                }}
+                onSubmit={() => createProduct()}
             >
                 {(formik) => (
                     <Form>
@@ -219,34 +211,31 @@ export default function Create({parents, categories}) {
                             setImages={setImages}
                             setColorImage={setColorImage}
                         />
+
                         <div className={styles.flex}>
                             {product.color.image && (
-                                <img
-                                    src={product.color.image}
-                                    className={styles.image_span}
-                                    alt=""
-                                />
+                                <img src={product.color.image} className={styles.image_span} alt=""/>
                             )}
+
                             {product.color.color && (
-                                <span
-                                    className={styles.color_span}
-                                    style={{background: `${product.color.color}`}}
-                                ></span>
+                                <span className={styles.color_span} style={{background: `${product.color.color}`}}></span>
                             )}
                         </div>
 
-                        <Colors
-                            name="color"
-                            product={product}
-                            setProduct={setProduct}
-                            colorImage={colorImage}
-                        />
-                        <Style
-                            name="styleInput"
-                            product={product}
-                            setProduct={setProduct}
-                            colorImage={colorImage}
-                        />
+                        {/*<Colors*/}
+                        {/*    name="color"*/}
+                        {/*    product={product}*/}
+                        {/*    setProduct={setProduct}*/}
+                        {/*    colorImage={colorImage}*/}
+                        {/*/>*/}
+
+                        {/*<Style*/}
+                        {/*    name="styleInput"*/}
+                        {/*    product={product}*/}
+                        {/*    setProduct={setProduct}*/}
+                        {/*    colorImage={colorImage}*/}
+                        {/*/>*/}
+
                         <SingularSelect
                             name="parent"
                             value={product.parent}
@@ -255,6 +244,7 @@ export default function Create({parents, categories}) {
                             header="Add to an existing product"
                             handleChange={handleChange}
                         />
+
                         <SingularSelect
                             name="category"
                             value={product.category}
@@ -311,35 +301,36 @@ export default function Create({parents, categories}) {
                             placholder="Product discount"
                             onChange={handleChange}
                         />
+
                         <Sizes
                             sizes={product.sizes}
                             product={product}
                             setProduct={setProduct}
                         />
+
                         <Details
                             details={product.details}
                             product={product}
                             setProduct={setProduct}
                         />
+
                         <Questions
                             questions={product.questions}
                             product={product}
                             setProduct={setProduct}
                         />
                         {/*
-            <Images
-              name="imageDescInputFile"
-              header="Product Description Images"
-              text="Add images"
-              images={description_images}
-              setImages={setDescriptionImages}
-              setColorImage={setColorImage}
-            />
-            */}
-                        <button
-                            className={`${styles.btn} ${styles.btn__primary} ${styles.submit_btn}`}
-                            type="submit"
-                        >
+                        <Images
+                          name="imageDescInputFile"
+                          header="Product Description Images"
+                          text="Add images"
+                          images={description_images}
+                          setImages={setDescriptionImages}
+                          setColorImage={setColorImage}
+                        />
+                        */}
+
+                        <button className={`${styles.btn} ${styles.btn__primary} ${styles.submit_btn}`} type="submit">
                             Create Product
                         </button>
                     </Form>
@@ -353,12 +344,14 @@ export async function getServerSideProps(ctx) {
     await db.connectDb();
     const results = await Product.find().select("name subProducts").lean();
     const categories = await Category.find().lean();
+    // const products = await Product.find().lean();
     await db.disconnectDb();
 
     return {
         props: {
             parents: JSON.parse(JSON.stringify(results)),
             categories: JSON.parse(JSON.stringify(categories)),
+           // products: JSON.parse(JSON.stringify(products)),
         },
     };
 }

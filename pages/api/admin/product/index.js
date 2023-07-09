@@ -14,7 +14,7 @@ router.post(async (req, res) => {
             const parent = await Product.findById(req.body.parent);
             if (!parent) {
                 return res.status(400).json({
-                    message: "Parent product not found !",
+                    message: "Parent product not found!",
                 });
             } else {
                 const newParent = await parent.updateOne(
@@ -54,11 +54,12 @@ router.post(async (req, res) => {
                 ],
             });
             await newProduct.save();
-            res.status(200).json({message: "Product created Successfully."});
+            res.status(200).json({message: "Product created successfully."});
         }
         await db.disconnectDb();
     } catch (error) {
         res.status(500).json({message: error.message});
     }
 });
+
 export default router.handler()
