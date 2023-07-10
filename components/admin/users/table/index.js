@@ -102,7 +102,6 @@ export default function EnhancedTable({rows}) {
         <Box sx={{width: "100%"}}>
             <Paper sx={{width: "100%", mb: 2}}>
                 <EnhancedTableToolbar numSelected={selected.length}/>
-
                 <TableContainer>
                     <Table
                         sx={{minWidth: 750}}
@@ -146,6 +145,7 @@ export default function EnhancedTable({rows}) {
                                                     }}
                                                 />
                                             </TableCell>
+
                                             <TableCell
                                                 component="th"
                                                 id={labelId}
@@ -159,8 +159,11 @@ export default function EnhancedTable({rows}) {
                                                     className={styles.table__img}
                                                 />
                                             </TableCell>
+
                                             <TableCell align="right">{row.name}</TableCell>
+
                                             <TableCell align="right">{row.email}</TableCell>
+
                                             <TableCell align="right">
                                                 {row.verified ? (
                                                     <img
@@ -176,8 +179,9 @@ export default function EnhancedTable({rows}) {
                                                     />
                                                 )}
                                             </TableCell>
+
                                             <TableCell align="right">
-                                                {row.role == "admin" ? (
+                                                {row.role === "admin" ? (
                                                     <img
                                                         src="../../../images/verified.png"
                                                         alt=""
@@ -191,6 +195,7 @@ export default function EnhancedTable({rows}) {
                                                     />
                                                 )}
                                             </TableCell>
+
                                             <TableCell align="right">
                                                 <RiDeleteBin7Fill/>
                                             </TableCell>
@@ -198,11 +203,7 @@ export default function EnhancedTable({rows}) {
                                     );
                                 })}
                             {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: (dense ? 33 : 53) * emptyRows,
-                                    }}
-                                >
+                                <TableRow style={{height: (dense ? 33 : 53) * emptyRows}}>
                                     <TableCell colSpan={6}/>
                                 </TableRow>
                             )}

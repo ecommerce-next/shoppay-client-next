@@ -16,7 +16,7 @@ router.post(async (req, res) => {
     const payment = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100),
       currency: "USD",
-      description: "M74JJI Store",
+      description: "Ir Store",
       payment_method: id,
       confirm: true,
     });
@@ -26,6 +26,7 @@ router.post(async (req, res) => {
     if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();
+      order.status = payment.status,
       order.paymentResult = {
         id: payment.id,
         status: payment.status,
