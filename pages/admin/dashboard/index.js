@@ -8,20 +8,18 @@ import {useSession} from "next-auth/react";
 import Dropdown from "../../../components/admin/dashboard/dropdown";
 import Notifications from "../../../components/admin/dashboard/notifications";
 import {TbUsers} from "react-icons/tb";
-import {SlHandbag, SlEye} from "react-icons/sl";
+import {SlEye, SlHandbag} from "react-icons/sl";
 import {SiProducthunt} from "react-icons/si";
 import {GiTakeMyMoney} from "react-icons/gi";
 import Link from "next/link";
-import {toast} from "react-toastify";
 
 export default function Dashboard({users, orders, products}) {
     const {data: session} = useSession();
 
     return (
         <div>
-            <Head>
-                <title>Shoppay - Admin Dashboard</title>
-            </Head>
+            <Head><title>Shoppay - Admin Dashboard</title></Head>
+
             <Layout>
                 <div className={styles.header}>
                     <div className={styles.header__search}>
@@ -29,6 +27,7 @@ export default function Dashboard({users, orders, products}) {
                             <input type="text" placeholder="Search here..."/>
                         </label>
                     </div>
+
                     <div className={styles.header__right}>
                         <Dropdown userImage={session?.user?.image}/>
                         <Notifications/>

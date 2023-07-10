@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { IoNotificationsSharp } from "react-icons/io5";
-import { notificationsData } from "../../../../data/notifications";
+import { notificationsData } from "../../../../data/adminData/notifications";
 const Notifications = ({}) => {
   const [show, setShow] = useState(false);
   return (
