@@ -11,6 +11,7 @@ const OrdersSection = ({orders}) => {
                     <h2>Recent Orders</h2>
                     <Link href="/admin/dashboard/orders">View All</Link>
                 </div>
+
                 <table>
                     <thead>
                     <tr>
@@ -21,6 +22,7 @@ const OrdersSection = ({orders}) => {
                         <td>View</td>
                     </tr>
                     </thead>
+
                     <tbody>
                     {orders.map((order) => (
                         <tr key={order._id}>
@@ -36,15 +38,15 @@ const OrdersSection = ({orders}) => {
                             <td>
                                 <div
                                     className={`${styles.status} ${
-                                        order.status == "Not Processed"
+                                        order.status === "Not Processed"
                                             ? styles.not_processed
-                                            : order.status == "Processing"
+                                            : order.status === "Processing"
                                                 ? styles.processing
-                                                : order.status == "Dispatched"
+                                                : order.status === "succeeded"
                                                     ? styles.dispatched
-                                                    : order.status == "Cancelled"
+                                                    : order.status === "Cancelled"
                                                         ? styles.cancelled
-                                                        : order.status == "Completed"
+                                                        : order.status === "Completed"
                                                             ? styles.completed
                                                             : ""
                                     }`}

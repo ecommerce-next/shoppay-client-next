@@ -52,15 +52,15 @@ const Row = (props) => {
                 <TableCell align="right">
                     <span
                         className={
-                            row.status == "Not Processed"
+                            row.status === "Not Processed"
                                 ? styles.not_processed
-                                : row.status == "Processing"
+                                : row.status === "Processing"
                                     ? styles.processing
-                                    : row.status == "succeeded"
+                                    : row.status === "succeeded"
                                         ? styles.dispatched
-                                        : row.status == "Cancelled"
+                                        : row.status === "Cancelled"
                                             ? styles.cancelled
-                                            : row.status == "Completed"
+                                            : row.status === "Completed"
                                                 ? styles.completed
                                                 : ""
                         }

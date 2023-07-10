@@ -50,6 +50,7 @@ export default function Dashboard({users, orders, products}) {
 export async function getServerSideProps({req}) {
     const users = await User.find().lean();
     const orders = await Order.find()
+        // .limit(5)
         .populate({path: "user", model: User})
         .lean();
     const products = await Product.find().lean();

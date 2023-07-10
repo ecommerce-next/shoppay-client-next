@@ -38,8 +38,7 @@ const StatusCards = ({users, orders, products}) => {
                     <div className={styles.card__infos}>
                         <h4>+{orders.reduce((a, val) => a + val.total, 0)}$</h4>
                         <h5>
-                            -
-                            {orders
+                            - {orders
                                 .filter((o) => !o.isPaid)
                                 .reduce((a, val) => a + val.total, 0)}
                             $ Unpaid yet.
