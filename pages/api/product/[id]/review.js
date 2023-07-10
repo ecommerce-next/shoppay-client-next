@@ -10,9 +10,7 @@ router.put(async (req, res) => {
     const product = await Product.findById(req.query.id);
 
     if (product) {
-      const exist = product.reviews.find(
-        (x) => x.reviewBy.toString() == req.user
-      );
+      const exist = product.reviews.find((x) => x.reviewBy.toString() === req.user);
       if (exist) {
         await Product.updateOne(
           {
@@ -42,6 +40,7 @@ router.put(async (req, res) => {
         await updatedProduct.save();
         await updatedProduct.populate("reviews.reviewBy");
         await db.disconnectDb();
+
         return res
           .status(200)
           .json({ reviews: updatedProduct.reviews.reverse() });

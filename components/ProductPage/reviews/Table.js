@@ -7,7 +7,7 @@ import TableHeader from "./TableHeader";
 
 export default function Table({reviews, allSizes, colors}) {
     const [page, setPage] = useState(1);
-    const PER_PAGE = 3;
+    const PER_PAGE = 4;
     const count = Math.ceil(reviews.length / PER_PAGE);
     const _DATA = usePagination(reviews, PER_PAGE);
     const handleChange = (e, p) => {

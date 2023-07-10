@@ -28,46 +28,55 @@ export default function AddReview({product, setReviews}) {
     const [images, setImages] = useState([]);
     let uploaded_images = [];
 
+    const errorSubmits = [
+        {
+            err: !size,
+            msg: "Please select a size!",
+            type: "error"
+        },
+        {
+            err: !style,
+            msg: "Please select a style!",
+            type: "error"
+        },
+        {
+            err: !fit,
+            msg: "Please select a fit!",
+            type: "error"
+        },
+        {
+            err: !review,
+            msg: "Please add a review!",
+            type: "error"
+        },
+        {
+            err: !rating,
+            msg: "Please select a rating!",
+            type: "error"
+        }
+    ]
+
     const handleSubmit = async () => {
         setLoading(true);
         let msgs = [];
-        if (!size) {
-            msgs.push({
-                msg: "Please select a size !",
-                type: "error",
-            });
-        }
-        if (!style) {
-            msgs.push({
-                msg: "Please select a style !",
-                type: "error",
-            });
-        }
-        if (!fit) {
-            msgs.push({
-                msg: "Please select a fit !",
-                type: "error",
-            });
-        }
-        if (!review) {
-            msgs.push({
-                msg: "Please add a review !",
-                type: "error",
-            });
-        }
-        if (!rating) {
-            msgs.push({
-                msg: "Please select a rating !",
-                type: "error",
-            });
-        }
+
+        errorSubmits.map((error) => {
+            if (error.err) {
+                msgs.push({
+                    msg: error.msg,
+                    type: error.type
+                })
+            }
+        })
+
         if (msgs.length > 0) {
             dispatch(
                 showDialog({
-                    header: "Adding review error !",
+                    header: "Adding review error!",
                     msgs,
                 })
             );
+
         } else {
             if (images.length > 0) {
                 let temp = images.map((img) => {
@@ -139,6 +148,7 @@ export default function AddReview({product, setReviews}) {
                     precision={0.5}
                     style={{color: "#facf19", fontSize: "3rem"}}
                 />
+
                 <button
                     className={`${styles.login_btn} ${loading ? styles.disabled : ""}`}
                     onClick={() => handleSubmit()}
