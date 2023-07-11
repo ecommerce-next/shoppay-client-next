@@ -15,7 +15,7 @@ export const sidebarData = [
             },
             {
                 name: "My Payment Options",
-                link: "/profile/payment",
+                link: "/profile/payments",
             },
             {
                 name: "Account Security",
