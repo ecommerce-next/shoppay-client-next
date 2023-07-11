@@ -31,6 +31,9 @@
         align-items: center;
         justify-content: space-between;
       }
+      &:hover {
+        color: #666;
+      }
       ul {
         margin-top: 0;
         padding-left: 1rem;

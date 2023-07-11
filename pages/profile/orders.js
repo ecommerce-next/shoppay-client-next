@@ -83,11 +83,11 @@ export async function getServerSideProps(ctx) {
             .sort({createdAt: -1})
             .lean();
 
-    } else if (filter == "paid") {
+    } else if (filter === "paid") {
         orders = await Order.find({user: session?.user.id, isPaid: true})
             .sort({createdAt: -1,})
             .lean();
-    } else if (filter == "unpaid") {
+    } else if (filter === "unpaid") {
         orders = await Order.find({user: session?.user.id, isPaid: false})
             .sort({createdAt: -1,})
             .lean();

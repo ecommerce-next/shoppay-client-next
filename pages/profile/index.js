@@ -4,7 +4,6 @@ import Link from "next/link";
 import styles from "../../styles/profile.module.scss";
 
 export default function profile({user, tab}) {
-    console.log(user)
     return (
         <Layout session={user.user} tab={tab}>
             <h1>Profile page of {user.user.name}</h1>
