@@ -9,13 +9,9 @@ router.put(async (req, res) => {
     await db.connectDb();
     const { product_id, style } = req.body;
     const user = await User.findById(req.user);
-    const exist = user.wishlist.find(
-      (x) => x.product == product_id && x.style == style
-    );
+    const exist = user.wishlist.find((x) => x.product === product_id && x.style === style);
     if (exist) {
-      return res
-        .status(400)
-        .json({ message: "Product already exists in your wishlist." });
+      return res.status(400).json({ message: "Product already exists in your wishlist." });
     }
 
     await user.updateOne({
@@ -30,7 +26,7 @@ router.put(async (req, res) => {
     await db.disconnectDb();
     res
       .status(200)
-      .json({ message: "Product succesfully added to your wishlist." });
+      .json({ message: "Product successfully added to your wishlist." });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });

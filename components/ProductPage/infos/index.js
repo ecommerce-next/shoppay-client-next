@@ -212,6 +212,7 @@ export default function Infos({product, setActiveImg}) {
                         <BsHandbagFill/>
                         <b>ADD TO CART</b>
                     </button>
+
                     <button onClick={() => handleWishlist()}>
                         <BsHeart/>
                         WISHLIST
