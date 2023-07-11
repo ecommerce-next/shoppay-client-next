@@ -2,6 +2,7 @@ import {v4 as uuidv4} from "uuid";
 
 export const sidebarData = [
     {
+        id: uuidv4(),
         heading: "My Account",
         links: [
             {
@@ -22,7 +23,9 @@ export const sidebarData = [
             },
         ],
     },
+
     {
+        id: uuidv4(),
         heading: "My Orders",
         links: [
             {
@@ -57,7 +60,7 @@ export const sidebarData = [
                 filter: "Dispatched",
             },
             {
-                name: "Delievered Orders",
+                name: "Delivered Orders",
                 link: "/profile/orders",
                 filter: "Completed",
             },
@@ -68,7 +71,9 @@ export const sidebarData = [
             },
         ],
     },
+
     {
+        id: uuidv4(),
         heading: "My Lists",
         links: [
             {
@@ -81,7 +86,9 @@ export const sidebarData = [
             },
         ],
     },
+
     {
+        id: uuidv4(),
         heading: "Customer Service",
         links: [
             {
@@ -94,7 +101,9 @@ export const sidebarData = [
             },
         ],
     },
+
     {
+        id: uuidv4(),
         heading: "Other Services",
         links: [
             {
@@ -107,7 +116,9 @@ export const sidebarData = [
             },
         ],
     },
+
     {
+        id: uuidv4(),
         heading: "Policy",
         links: [
             {
@@ -124,7 +135,9 @@ export const sidebarData = [
             },
         ],
     },
+
     {
+        id: uuidv4(),
         heading: "Sign out",
         link: [],
     },

@@ -12,9 +12,9 @@ export default function Sidebar({data}) {
                 <ul>
                     {sidebarData.map((item, i) => (
                         <Item
-                            key={item.heading}
+                            key={item.id}
                             item={item}
-                            visible={data.tab == i.toString()}
+                            visible={data.tab === i.toString()}
                             index={i.toString()}
                         />
                     ))}

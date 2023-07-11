@@ -12,16 +12,17 @@ const Item = ({item, visible, index}) => {
 
     return (
         <li>
-            {item.heading == "Sign out" ? (<b onClick={() => signOut()}>Sign out</b>
+            {item.heading === "Sign out" ? (<b onClick={() => signOut()}>Sign out</b>
             ) : (
                 <b onClick={() => setShow((prev) => !prev)}>
                     {item.heading} {show ? <HiMinusSm/> : <HiPlusSm/>}
                 </b>
             )}
+
             {show && (
                 <ul>
                     {item.links.map((link, i) => (
-                        <div key={link}>
+                        <div key={link.name}>
                             {link.link.startsWith("/profile/orders") ? (
                                 <li className={(router.query.q?.split("__")[0] || "") === slugify(link.name, {lower: true}) ? styles.active : ""}>
                                     <Link
