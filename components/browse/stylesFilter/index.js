@@ -11,9 +11,7 @@ export default function StyleFilter({data, styleHandler, replaceQuery}) {
 
     return (
         <div className={styles.filter}>
-            <h3>
-                Style <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
-            </h3>
+            <h3>Style <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
             {show && (
                 <div className={styles.filter__sizes}>
                     {data.map(style => {
@@ -29,6 +27,7 @@ export default function StyleFilter({data, styleHandler, replaceQuery}) {
                                     name="style"
                                     id={style}
                                     checked={check.active}
+                                    onChange={() => check.result}
                                 />
                                 <label htmlFor={style}>{style}</label>
                             </div>

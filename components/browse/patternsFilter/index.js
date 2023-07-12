@@ -32,6 +32,7 @@ export default function PatternsFilter({
                                     name="pattern"
                                     id={pattern}
                                     checked={check.active}
+                                    onChange={() => check.result}
                                 />
                                 <label htmlFor={pattern}>
                                     {pattern.length > 12 ? `${pattern.substring(0, 12)}...` : pattern}

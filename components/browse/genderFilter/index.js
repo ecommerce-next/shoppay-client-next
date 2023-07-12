@@ -28,6 +28,7 @@ export default function GenderFilter({genderHandler, replaceQuery}) {
                                     name="gender"
                                     id={gender}
                                     checked={check.active}
+                                    onChange={() => check.result}
                                 />
                                 <label htmlFor={gender}>{gender}</label>
                             </label>

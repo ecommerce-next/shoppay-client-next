@@ -5,6 +5,7 @@ import {IoIosArrowDown} from "react-icons/io";
 import {BsCheckLg} from "react-icons/bs";
 import {useState} from "react";
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 export default function HeadingFilters({
                                            priceHandler,
@@ -41,6 +42,7 @@ export default function HeadingFilters({
                     onChange={(e) => priceHandler(e.target.value, "max")}
                 />
             </div>
+
             <div className={styles.filers__priceBtns}>
                 <Tooltip
                     title={<h2>Check out products under 10$</h2>}
@@ -48,72 +50,64 @@ export default function HeadingFilters({
                     arrow
                     onClick={() => multiPriceHandler(0, 10)}
                 >
-                    <button className={styles.tooltip_btn}>
-                        <span style={{height: "10%"}}></span>
-                    </button>
+                    <button className={styles.tooltip_btn}><span style={{height: "10%"}}></span></button>
                 </Tooltip>
+
                 <Tooltip
                     title={<h2>Check out products between 10$ and 50$</h2>}
                     placement="top"
                     arrow
                     onClick={() => multiPriceHandler(10, 50)}
                 >
-                    <button className={styles.tooltip_btn}>
-                        <span style={{height: "25%"}}></span>
-                    </button>
+                    <button className={styles.tooltip_btn}><span style={{height: "25%"}}></span></button>
                 </Tooltip>
+
                 <Tooltip
                     title={<h2>Check out products between 50$ and 100$</h2>}
                     placement="top"
                     arrow
                     onClick={() => multiPriceHandler(50, 100)}
                 >
-                    <button className={styles.tooltip_btn}>
-                        <span style={{height: "50%"}}></span>
-                    </button>
+                    <button className={styles.tooltip_btn}><span style={{height: "50%"}}></span></button>
                 </Tooltip>
+
                 <Tooltip
                     title={<h2>Check out products between 100$ and 500$</h2>}
                     placement="top"
                     arrow
                     onClick={() => multiPriceHandler(100, 500)}
                 >
-                    <button className={styles.tooltip_btn}>
-                        <span style={{height: "75%"}}></span>
-                    </button>
+                    <button className={styles.tooltip_btn}><span style={{height: "75%"}}></span></button>
                 </Tooltip>
+
                 <Tooltip
                     title={<h2>Check out products for more than 500$</h2>}
                     placement="top"
                     arrow
                     onClick={() => multiPriceHandler(500, "")}
                 >
-                    <button className={styles.tooltip_btn}>
-                        <span style={{height: "100%"}}></span>
-                    </button>
+                    <button className={styles.tooltip_btn}><span style={{height: "100%"}}></span></button>
                 </Tooltip>
             </div>
-            <div
-                className={styles.filters__shipping}
-                onClick={() => shippingHandler(check.result)}
-            >
+
+            <div className={styles.filters__shipping} onClick={() => shippingHandler(check.result)}>
                 <input
                     type="checkbox"
                     name="shipping"
                     id="shipping"
                     checked={router.query.shipping == "0"}
+                    onChange={() => shippingHandler(check.result)}
                 />
                 <label htmlFor="shipping">Free Shipping</label>
             </div>
-            <div
-                className={styles.filters__rating}
-                onClick={() => ratingHandler(checkRating.result)}
-            >
+
+            <div className={styles.filters__rating} onClick={() => ratingHandler(checkRating.result)}>
                 <input
                     type="checkbox"
                     name="rating"
                     id="rating"
                     checked={router.query.rating == "4"}
+                    onChange={() => ratingHandler(checkRating.result)}
                 />
                 <label htmlFor="rating">
                     <AiTwotoneStar/>
@@ -122,6 +116,7 @@ export default function HeadingFilters({
                     <AiTwotoneStar/> & up
                 </label>
             </div>
+
             <div className={styles.filters__sort}>
                 <span>Sort by</span>
                 <div
@@ -130,37 +125,21 @@ export default function HeadingFilters({
                     onMouseLeave={() => setShow(false)}
                 >
                     <button>
-                        {sortQuery == ""
-                            ? "Recommend"
-                            : sortingOptions.find((x) => x.value == sortQuery).name}
-                        <div
-                            style={{tarnsform: `${show ? "rotate(180deg)" : "rotate(0"}`}}
-                        >
+                        {sortQuery == "" ? "Recommend" : sortingOptions.find((x) => x.value == sortQuery).name}
+                        <div style={{tarnsform: `${show ? "rotate(180deg)" : "rotate(0"}`}}>
                             <IoIosArrowDown/>
                         </div>
                     </button>
-                    <ul
-                        style={{
-                            transform: `${show ? "scale3d(1,1,1)" : "scale3d(1,0,1)"}`,
-                        }}
-                    >
+
+                    <ul style={{transform: `${show ? "scale3d(1,1,1)" : "scale3d(1,0,1)"}`,}}>
                         {sortingOptions.map((option, i) => (
                             <li key={i} onClick={() => sortHandler(option.value)}>
-                                <a>
-                                    {sortQuery == option.value ? (
-                                        <b>{option.name}</b>
-                                    ) : (
-                                        option.name
-                                    )}{" "}
+                                <Link href=''>
+                                    {sortQuery == option.value ? (<b>{option.name}</b>) : (option.name)}{" "}
                                     {sortQuery == option.value ? <BsCheckLg/> : ""}
                                     {sortQuery !== option.value ? (
-                                        <div className={styles.check}>
-                                            <BsCheckLg/>
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                </a>
+                                        <div className={styles.check}><BsCheckLg/></div>) : ("")}
+                                </Link>
                             </li>
                         ))}
                     </ul>

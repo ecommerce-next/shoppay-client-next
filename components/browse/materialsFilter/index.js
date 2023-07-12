@@ -28,6 +28,7 @@ export default function MaterialsFilter({materials, materialHandler, replaceQuer
                                     name="material"
                                     id={material}
                                     checked={check.active}
+                                    onChange={() => check.result}
                                 />
                                 <label htmlFor={material}>
                                     {material.length > 12 ? `${material.substring(0, 12)}...` : material}

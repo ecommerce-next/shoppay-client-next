@@ -227,59 +227,59 @@ export default function Browse({
                             sizes={sizes}
                             sizeHandler={sizeHandler}
                         />
-                        {/*<ColorsFilter*/}
-                        {/*    colors={colors}*/}
-                        {/*    colorHandler={colorHandler}*/}
-                        {/*    replaceQuery={replaceQuery}*/}
-                        {/*/>*/}
-                        {/*            <BrandsFilter*/}
-                        {/*                brands={brands}*/}
-                        {/*                brandHandler={brandHandler}*/}
-                        {/*                replaceQuery={replaceQuery}*/}
-                        {/*            />*/}
-                        {/*            <StylesFilter*/}
-                        {/*                data={stylesData}*/}
-                        {/*                styleHandler={styleHandler}*/}
-                        {/*                replaceQuery={replaceQuery}*/}
-                        {/*            />*/}
-                        {/*            <PatternsFilter*/}
-                        {/*                patterns={patterns}*/}
-                        {/*                patternHandler={patternHandler}*/}
-                        {/*                replaceQuery={replaceQuery}*/}
-                        {/*            />*/}
-                        {/*            <MaterialsFilter*/}
-                        {/*                materials={materials}*/}
-                        {/*                materialHandler={materialHandler}*/}
-                        {/*                replaceQuery={replaceQuery}*/}
-                        {/*            />*/}
-                        {/*            <GenderFilter*/}
-                        {/*                genderHandler={genderHandler}*/}
-                        {/*                replaceQuery={replaceQuery}*/}
-                        {/*            />*/}
-                        {/*        </div>*/}
-                        {/*        <div className={styles.browse__store_products_wrap}>*/}
-                        {/*            <HeadingFilters*/}
-                        {/*                priceHandler={priceHandler}*/}
-                        {/*                multiPriceHandler={multiPriceHandler}*/}
-                        {/*                shippingHandler={shippingHandler}*/}
-                        {/*                ratingHandler={ratingHandler}*/}
-                        {/*                replaceQuery={replaceQuery}*/}
-                        {/*                sortHandler={sortHandler}*/}
-                        {/*            />*/}
-                        {/*            <div className={styles.browse__store_products}>*/}
-                        {/*                {products.map((product) => (*/}
-                        {/*                    <ProductCard product={product} key={product._id}/>*/}
-                        {/*                ))}*/}
-                        {/*            </div>*/}
-                        {/*            <div className={styles.pagination}>*/}
-                        {/*                <Pagination*/}
-                        {/*                    count={paginationCount}*/}
-                        {/*                    defaultPage={Number(router.query.page) || 1}*/}
-                        {/*                    onChange={pageHandler}*/}
-                        {/*                    variant="outlined"*/}
-                        {/*                    color="primary"*/}
-                        {/*                />*/}
-                        {/*            </div>*/}
+                        <ColorsFilter
+                            colors={colors}
+                            colorHandler={colorHandler}
+                            replaceQuery={replaceQuery}
+                        />
+                        <BrandsFilter
+                            brands={brands}
+                            brandHandler={brandHandler}
+                            replaceQuery={replaceQuery}
+                        />
+                        <StylesFilter
+                            data={stylesData}
+                            styleHandler={styleHandler}
+                            replaceQuery={replaceQuery}
+                        />
+                        <PatternsFilter
+                            patterns={patterns}
+                            patternHandler={patternHandler}
+                            replaceQuery={replaceQuery}
+                        />
+                        <MaterialsFilter
+                            materials={materials}
+                            materialHandler={materialHandler}
+                            replaceQuery={replaceQuery}
+                        />
+                        <GenderFilter
+                            genderHandler={genderHandler}
+                            replaceQuery={replaceQuery}
+                        />
+                    </div>
+                    <div className={styles.browse__store_products_wrap}>
+                        <HeadingFilters
+                            priceHandler={priceHandler}
+                            multiPriceHandler={multiPriceHandler}
+                            shippingHandler={shippingHandler}
+                            ratingHandler={ratingHandler}
+                            replaceQuery={replaceQuery}
+                            sortHandler={sortHandler}
+                        />
+                                    <div className={styles.browse__store_products}>
+                                        {products.map((product) => (
+                                            <ProductCard product={product} key={product._id}/>
+                                        ))}
+                                    </div>
+                                    <div className={styles.pagination}>
+                                        <Pagination
+                                            count={paginationCount}
+                                            defaultPage={Number(router.query.page) || 1}
+                                            onChange={pageHandler}
+                                            variant="outlined"
+                                            color="primary"
+                                        />
+                                    </div>
                     </div>
                 </div>
             </div>
