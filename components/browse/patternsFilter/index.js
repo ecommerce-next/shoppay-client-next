@@ -11,11 +11,16 @@ export default function PatternsFilter({
                                        }) {
     const router = useRouter();
     const existedPattern = router.query.pattern || "";
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     return (
         <div className={styles.filter}>
-            <h3>Pattern <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
+            <h3 onClick={() => setShow(!show)}>
+                Pattern
+                <span>{show ? <FaMinus/> : <BsPlusLg/>}
+                </span>
+            </h3>
+
             {show && (
                 <div className={styles.filter__sizes}>
                     {patterns.map(pattern => {

@@ -15,10 +15,8 @@ export const compareArrays = (array1, array2) => {
 
 export const filterArray = (array, property) => {
     return array
-        .filter((item) => item.name == property)
-        .map((s) => {
-            return s.value;
-        });
+        .filter((item) => item.name === property)
+        .map(s => s.value);
 };
 
 export const removeDuplicates = (array) => {

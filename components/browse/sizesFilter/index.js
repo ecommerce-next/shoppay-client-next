@@ -8,11 +8,14 @@ import Size from "./Size";
 export default function SizesFilter({sizes, sizeHandler}) {
     const router = useRouter();
     const existedSize = router.query.size || "";
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     return (
         <div className={styles.filter}>
-            <h3>Sizes <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
+            <h3 onClick={() => setShow(!show)}>
+                Sizes
+                <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
+            </h3>
 
             {show && (
                 <div className={styles.filter__sizes}>

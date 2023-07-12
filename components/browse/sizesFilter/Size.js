@@ -1,9 +1,6 @@
 import styles from "../styles.module.scss";
-import {useState} from "react";
 
 export default function Size({size, sizeHandler}) {
-    const [show, setShow] = useState(false);
-
     return (
         <label htmlFor={size} className={styles.filter__sizes_size}>
             <input

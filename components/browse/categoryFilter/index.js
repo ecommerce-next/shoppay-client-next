@@ -9,17 +9,20 @@ export default function CategoryFilter({categories, subCategories, categoryHandl
 
     return (
         <div className={styles.filter}>
-            <h3>Category <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
+            <h3 onClick={() => setShow(!show)}>
+                Category
+                <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
+            </h3>
 
             {show && categories.map(category => (
-                    <Card
-                        key={category._id}
-                        category={category}
-                        subCategories={subCategories}
-                        categoryHandler={categoryHandler}
-                        replaceQuery={replaceQuery}
-                    />
-                ))}
+                <Card
+                    key={category._id}
+                    category={category}
+                    subCategories={subCategories}
+                    categoryHandler={categoryHandler}
+                    replaceQuery={replaceQuery}
+                />
+            ))}
         </div>
     );
 }

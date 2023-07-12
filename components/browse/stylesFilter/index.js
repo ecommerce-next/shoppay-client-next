@@ -7,11 +7,15 @@ import {useRouter} from "next/router";
 export default function StyleFilter({data, styleHandler, replaceQuery}) {
     const router = useRouter();
     const existedStyle = router.query.style || "";
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     return (
         <div className={styles.filter}>
-            <h3>Style <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
+            <h3 onClick={() => setShow(!show)}>
+                Style
+                <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
+            </h3>
+
             {show && (
                 <div className={styles.filter__sizes}>
                     {data.map(style => {

@@ -6,11 +6,14 @@ import styles from "../styles.module.scss";
 
 export default function MaterialsFilter({materials, materialHandler, replaceQuery,}) {
     const router = useRouter();
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     return (
         <div className={styles.filter}>
-            <h3>Material <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
+            <h3 onClick={() => setShow(!show)}>
+                Material
+                <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
+            </h3>
 
             {show && (
                 <div className={styles.filter__sizes}>

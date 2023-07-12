@@ -5,11 +5,11 @@ import styles from "../styles.module.scss";
 
 export default function GenderFilter({genderHandler, replaceQuery}) {
     const genders = ["Men", "Women", "Unisex"];
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     return (
         <div className={styles.filter}>
-            <h3>
+            <h3 onClick={() => setShow(!show)}>
                 Gender <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
             </h3>
             {show && (

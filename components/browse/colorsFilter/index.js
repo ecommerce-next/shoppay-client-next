@@ -4,11 +4,11 @@ import {FaMinus} from "react-icons/fa";
 import styles from "../styles.module.scss";
 
 export default function ColorsFilter({colors, colorHandler, replaceQuery}) {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     return (
         <div className={styles.filter}>
-            <h3>
+            <h3 onClick={() => setShow(!show)}>
                 Colors <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
             </h3>
             {show && (
