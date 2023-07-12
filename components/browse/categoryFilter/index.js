@@ -4,21 +4,14 @@ import {FaMinus} from "react-icons/fa";
 import styles from "../styles.module.scss";
 import Card from "./Card";
 
-export default function CategoryFilter({
-                                           categories,
-                                           subCategories,
-                                           categoryHandler,
-                                           replaceQuery,
-                                       }) {
+export default function CategoryFilter({categories, subCategories, categoryHandler, replaceQuery}) {
     const [show, setShow] = useState(true);
 
     return (
         <div className={styles.filter}>
-            <h3>
-                Category <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
-            </h3>
-            {show &&
-                categories.map(category => (
+            <h3>Category <span>{show ? <FaMinus/> : <BsPlusLg/>}</span></h3>
+
+            {show && categories.map(category => (
                     <Card
                         key={category._id}
                         category={category}
