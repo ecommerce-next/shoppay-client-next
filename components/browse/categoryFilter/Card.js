@@ -17,9 +17,7 @@ export default function Card({category, categoryHandler, replaceQuery}) {
                     checked={check.active}
                     onChange={() => categoryHandler(category._id)}
                 />
-                <label htmlFor={category._id}>
-                    <Link href='/'>{category.name}</Link>
-                </label>
+                <label htmlFor={category._id}><Link href='/'>{category.name}</Link></label>
                 <span>{show ? <FaMinus/> : <BsPlusLg/>}</span>
             </li>
         </section>

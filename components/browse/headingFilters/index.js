@@ -106,7 +106,7 @@ export default function HeadingFilters({
                     type="checkbox"
                     name="rating"
                     id="rating"
-                    checked={router.query.rating == "4"}
+                    checked={router.query.rating >= "4"}
                     onChange={() => ratingHandler(checkRating.result)}
                 />
                 <label htmlFor="rating">
@@ -135,8 +135,8 @@ export default function HeadingFilters({
                         {sortingOptions.map((option, i) => (
                             <li key={i} onClick={() => sortHandler(option.value)}>
                                 <Link href=''>
-                                    {sortQuery == option.value ? (<b>{option.name}</b>) : (option.name)}{" "}
-                                    {sortQuery == option.value ? <BsCheckLg/> : ""}
+                                    {sortQuery === option.value ? (<b>{option.name}</b>) : (option.name)}{" "}
+                                    {sortQuery === option.value ? <BsCheckLg/> : ""}
                                     {sortQuery !== option.value ? (
                                         <div className={styles.check}><BsCheckLg/></div>) : ("")}
                                 </Link>

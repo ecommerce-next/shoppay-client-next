@@ -237,11 +237,13 @@ export default function Browse({
                             brandHandler={brandHandler}
                             replaceQuery={replaceQuery}
                         />
+
                         <StylesFilter
                             data={stylesData}
                             styleHandler={styleHandler}
                             replaceQuery={replaceQuery}
                         />
+
                         <PatternsFilter
                             patterns={patterns}
                             patternHandler={patternHandler}

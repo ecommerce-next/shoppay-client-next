@@ -33,7 +33,7 @@ export default function StyleFilter({data, styleHandler, replaceQuery}) {
                                     checked={check.active}
                                     onChange={() => check.result}
                                 />
-                                <label htmlFor={style}>{style}</label>
+                                {style}
                             </div>
                         );
                     })}
