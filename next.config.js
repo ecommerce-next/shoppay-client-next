@@ -7,6 +7,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
     prependData: `@import "./base.scss";`,
   },
+  images: { domains: ['res.cloudinary.com'] },
 };
 
 module.exports = nextConfig;
