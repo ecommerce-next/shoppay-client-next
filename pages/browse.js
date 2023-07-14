@@ -75,7 +75,7 @@ export default function Browse({
     };
 
     const searchHandler = (search) => {
-        if (search == "") {
+        if (search === "") {
             filter({search: {}});
         } else {
             filter({search});
@@ -113,8 +113,8 @@ export default function Browse({
         let priceQuery = router.query.price?.split("_") || "";
         let min = priceQuery[0] || "";
         let max = priceQuery[1] || "";
-        let newPrice = "";
-        if (type == "min") {
+        let newPrice;
+        if (type === "min") {
             newPrice = `${price}_${max}`;
         } else {
             newPrice = `${min}_${price}`;
@@ -153,15 +153,15 @@ export default function Browse({
         const existedQuery = router.query[queryName];
         const valueCheck = existedQuery?.search(value);
         const _check = existedQuery?.search(`_${value}`);
-        let result = "";
+        let result;
         if (existedQuery) {
-            if (existedQuery == value) {
+            if (existedQuery === value) {
                 result = {};
             } else {
                 if (valueCheck !== -1) {
                     if (_check !== -1) {
                         result = existedQuery?.replace(`_${value}`, "");
-                    } else if (valueCheck == 0) {
+                    } else if (valueCheck === 0) {
                         result = existedQuery?.replace(`${value}_`, "");
                     } else {
                         result = existedQuery?.replace(value, "");
@@ -175,7 +175,7 @@ export default function Browse({
         }
         return {
             result,
-            active: existedQuery && valueCheck !== -1 ? true : false,
+            active: !!(existedQuery && valueCheck !== -1),
         };
     }
 
@@ -201,7 +201,9 @@ export default function Browse({
 
     return (
         <div className={styles.browse}>
-            <div ref={headerRef}><Header searchHandler={searchHandler} country={country}/></div>
+            <div ref={headerRef}>
+                <Header searchHandler={searchHandler} country={country}/>
+            </div>
 
             <div className={styles.browse__container}>
                 <div ref={el}>
@@ -268,20 +270,20 @@ export default function Browse({
                             replaceQuery={replaceQuery}
                             sortHandler={sortHandler}
                         />
-                                    <div className={styles.browse__store_products}>
-                                        {products.map((product) => (
-                                            <ProductCard product={product} key={product._id}/>
-                                        ))}
-                                    </div>
-                                    <div className={styles.pagination}>
-                                        <Pagination
-                                            count={paginationCount}
-                                            defaultPage={Number(router.query.page) || 1}
-                                            onChange={pageHandler}
-                                            variant="outlined"
-                                            color="primary"
-                                        />
-                                    </div>
+                        <div className={styles.browse__store_products}>
+                            {products.map((product) => (
+                                <ProductCard product={product} key={product._id}/>
+                            ))}
+                        </div>
+                        <div className={styles.pagination}>
+                            <Pagination
+                                count={paginationCount}
+                                defaultPage={Number(router.query.page) || 1}
+                                onChange={pageHandler}
+                                variant="outlined"
+                                color="primary"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -307,16 +309,13 @@ export async function getServerSideProps(ctx) {
     const brandRegex = `^${brandQuery[0]}`;
     const brandSearchRegex = createRegex(brandQuery, brandRegex);
     //-----------
-    //-----------
     const styleQuery = query.style?.split("_") || "";
     const styleRegex = `^${styleQuery[0]}`;
     const styleSearchRegex = createRegex(styleQuery, styleRegex);
     //-----------
-    //-----------
     const patternQuery = query.pattern?.split("_") || "";
     const patternRegex = `^${patternQuery[0]}`;
     const patternSearchRegex = createRegex(patternQuery, patternRegex);
-    //-----------
     //-----------
     const materialQuery = query.material?.split("_") || "";
     const materialRegex = `^${materialQuery[0]}`;
@@ -415,7 +414,7 @@ export async function getServerSideProps(ctx) {
             }
             : {};
     const shipping =
-        shippingQuery && shippingQuery === "0" ? {shipping: 0} : {};
+        shippingQuery && shippingQuery == "0" ? {shipping: 0} : {};
     const rating = ratingQuery && ratingQuery !== "" ? {rating: {$gte: Number(ratingQuery)},} : {};
 
     const sort =

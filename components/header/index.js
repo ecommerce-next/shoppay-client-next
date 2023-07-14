@@ -3,12 +3,12 @@ import Ad from "./Ad";
 import Top from './Top'
 import Main from './Main'
 
-function Header({country}) {
+function Header({country, searchHandler}) {
     return (
         <header className={styles.header}>
             <Ad/>
             <Top country={country}/>
-            <Main/>
+            <Main searchHandler={searchHandler}/>
         </header>
     );
 }
