@@ -46,10 +46,11 @@ export default function ProductCard({product}) {
                             : product.name}
                     </h1>
                     <span>
-            {prices.length === 1
-                ? `USD${prices[0]}$`
-                : `USD${prices[0]}-${prices[prices.length - 1]}$`}
-          </span>
+                        {prices.length === 1
+                            ? `USD${prices[0]}$`
+                            : `USD${prices[0]}-${prices[prices.length - 1]}$`}
+                    </span>
+
                     <div className={styles.product__colors}>
                         {stylesColors &&
                             stylesColors.map((style, i) =>

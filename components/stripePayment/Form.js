@@ -55,6 +55,7 @@ export default function Form({ total, order_id }) {
     <div className={styles.stripe}>
       <form onSubmit={handleSubmit}>
         <CardElement options={CARD_OPTIONS} />
+
         <button className={styles.stripe__pay_button} type="submit">PAY</button>
         {error && <span className={styles.stripe__error}>{error}</span>}
       </form>

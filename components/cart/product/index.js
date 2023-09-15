@@ -84,9 +84,9 @@ export default function Product({product, selected, setSelected}) {
                     </div>
                     <div className={styles.product__priceQty}>
                         <div className={styles.product__priceQty_price}>
-              <span className={styles.price}>
-                USD{(product.price * product.qty).toFixed(2)}$
-              </span>
+
+                            <span className={styles.price}>USD{(product.price * product.qty).toFixed(2)}$</span>
+
                             {product.price !== product.priceBefore && (
                                 <span className={styles.priceBefore}>
                   USD{product.priceBefore}$
@@ -96,6 +96,7 @@ export default function Product({product, selected, setSelected}) {
                                 <span className={styles.discount}>-{product.discount}%</span>
                             )}
                         </div>
+
                         <div className={styles.product__priceQty_qty}>
                             <button
                                 disabled={product.qty < 2}
